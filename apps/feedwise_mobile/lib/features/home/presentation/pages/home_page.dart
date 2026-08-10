@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../data/models/user_model.dart';
-import '../../../logic/providers/auth/auth_provider.dart';
-import '../../../logic/providers/investigation/investigation_provider.dart';
-import '../../../logic/providers/feed/feed_provider.dart';
-import '../../../shared/widgets/fw_card.dart';
-import '../../../shared/widgets/fw_button.dart';
-import '../../../shared/widgets/fw_skill_radar.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/user_model.dart';
+import 'package:feedwise_mobile/data/models/skill_model.dart';
+import 'package:feedwise_mobile/logic/providers/auth/auth_provider.dart';
+import 'package:feedwise_mobile/logic/providers/investigation/investigation_provider.dart';
+import 'package:feedwise_mobile/logic/providers/feed/feed_provider.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_card.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_skill_radar.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -56,7 +57,7 @@ class HomePage extends ConsumerWidget {
 
 class _HomeContent extends ConsumerWidget {
   final UserModel user;
-  final AsyncValue skillsAsync;
+  final AsyncValue<SkillsModel> skillsAsync;
   const _HomeContent({required this.user, required this.skillsAsync});
 
   @override
@@ -376,7 +377,7 @@ class _QuickActionTile extends StatelessWidget {
 }
 
 class _SkillSnapshot extends StatelessWidget {
-  final dynamic skills;
+  final SkillsModel skills;
   const _SkillSnapshot({required this.skills});
 
   @override

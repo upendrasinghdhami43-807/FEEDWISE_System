@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../app/theme/theme.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
 
 class FWCard extends StatelessWidget {
   final Widget child;

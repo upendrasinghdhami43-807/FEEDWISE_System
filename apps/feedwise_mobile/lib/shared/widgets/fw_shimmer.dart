@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../app/theme/theme.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
 
 class FWShimmer extends StatelessWidget {
   final double width;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../logic/providers/auth/auth_provider.dart';
-import '../../../shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/logic/providers/auth/auth_provider.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

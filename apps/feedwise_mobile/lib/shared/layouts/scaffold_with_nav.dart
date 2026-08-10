@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../app/theme/theme.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
 
 class ScaffoldWithNav extends StatelessWidget {
   final Widget child;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../../app/theme/theme.dart';
-import '../../data/models/skill_model.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/skill_model.dart';
 
 class FWSkillRadar extends StatelessWidget {
   final SkillsModel skills;
@@ -15,14 +15,6 @@ class FWSkillRadar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skillColors = [
-      AppColors.skillSource,
-      AppColors.skillEvidence,
-      AppColors.skillAI,
-      AppColors.skillBias,
-      AppColors.skillSafety,
-    ];
-
     return SizedBox(
       width: size,
       height: size,

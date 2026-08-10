@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../data/models/scenario_model.dart';
-import '../../../logic/providers/feed/feed_provider.dart';
-import '../../../shared/widgets/fw_card.dart';
-import '../../../shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/scenario_model.dart';
+import 'package:feedwise_mobile/logic/providers/feed/feed_provider.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_card.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
 
 class ConsequencePage extends ConsumerWidget {
   final String scenarioId;

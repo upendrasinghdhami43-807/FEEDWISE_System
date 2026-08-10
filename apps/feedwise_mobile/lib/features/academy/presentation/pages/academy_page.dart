@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../data/models/lesson_model.dart';
-import '../../../data/models/skill_model.dart';
-import '../../../shared/widgets/fw_card.dart';
-import '../../../shared/widgets/fw_button.dart';
-import '../../../shared/widgets/fw_progress_bar.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/lesson_model.dart';
+import 'package:feedwise_mobile/data/models/skill_model.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_card.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_progress_bar.dart';
 
 class AcademyPage extends StatelessWidget {
   const AcademyPage({super.key});

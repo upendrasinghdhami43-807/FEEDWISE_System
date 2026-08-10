@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../shared/widgets/fw_card.dart';
-import '../../../shared/widgets/fw_button.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_card.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_button.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({super.key});

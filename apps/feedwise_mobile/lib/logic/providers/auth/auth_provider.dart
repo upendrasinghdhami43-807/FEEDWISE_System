@@ -1,24 +1,20 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/models/user_model.dart';
-import '../../data/services/supabase_config.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:feedwise_mobile/data/models/user_model.dart';
+import 'package:feedwise_mobile/data/services/supabase_config.dart';
 
-// Auth state stream
-final authStateProvider = StreamProvider<AuthStateChange>((ref) {
+final authStateProvider = StreamProvider<AuthState>((ref) {
   return SupabaseConfig.client.auth.onAuthStateChange;
 });
 
-// Current session
-final currentSessionProvider = Provider<dynamic>((ref) {
+final currentSessionProvider = Provider<Session?>((ref) {
   return SupabaseConfig.client.auth.currentSession;
 });
 
-// Is logged in
 final isLoggedInProvider = Provider<bool>((ref) {
-  final session = ref.watch(currentSessionProvider);
-  return session != null;
+  return ref.watch(currentSessionProvider) != null;
 });
 
-// Demo user for offline/mock mode
 final _demoUser = UserModel(
   id: 'demo-001',
   authId: 'demo-auth-001',
@@ -33,11 +29,9 @@ final _demoUser = UserModel(
   createdAt: DateTime(2026, 1, 1),
 );
 
-// Current user model
 final currentUserProvider = FutureProvider<UserModel>((ref) async {
   final session = SupabaseConfig.client.auth.currentSession;
   if (session == null) return _demoUser;
-
   try {
     final response = await SupabaseConfig.client
         .from('users')
@@ -51,7 +45,6 @@ final currentUserProvider = FutureProvider<UserModel>((ref) async {
   }
 });
 
-// Auth controller
 final authControllerProvider = NotifierProvider<AuthController, AsyncValue<void>>(() {
   return AuthController();
 });
@@ -82,7 +75,6 @@ class AuthController extends Notifier<AsyncValue<void>> {
         email: email,
         password: password,
       );
-
       if (authResponse.user != null) {
         await SupabaseConfig.client.from('users').insert({
           'auth_id': authResponse.user!.id,
@@ -103,7 +95,6 @@ class AuthController extends Notifier<AsyncValue<void>> {
     });
   }
 
-  // Fake sign-in for demo mode
   void signInDemo() {
     state = const AsyncValue.data(null);
   }

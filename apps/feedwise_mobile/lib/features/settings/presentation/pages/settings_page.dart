@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../app/theme/theme.dart';
-import '../../../logic/providers/settings/settings_provider.dart';
-import '../../../logic/providers/auth/auth_provider.dart';
-import '../../../shared/widgets/fw_card.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/logic/providers/settings/settings_provider.dart';
+import 'package:feedwise_mobile/logic/providers/auth/auth_provider.dart';
+import 'package:feedwise_mobile/shared/widgets/fw_card.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});

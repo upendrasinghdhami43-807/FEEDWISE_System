@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../app/theme/theme.dart';
-import '../../data/models/evidence_model.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/evidence_model.dart';
 
 class FWEvidenceBadge extends StatelessWidget {
   final EvidenceStatus status;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../app/theme/theme.dart';
-import '../../data/models/scenario_model.dart';
+import 'package:feedwise_mobile/app/theme/theme.dart';
+import 'package:feedwise_mobile/data/models/scenario_model.dart';
 
 class FWDecisionButton extends StatelessWidget {
   final Decision decision;

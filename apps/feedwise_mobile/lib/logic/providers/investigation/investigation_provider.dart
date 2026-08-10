@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/models/scenario_model.dart';
-import '../../data/models/skill_model.dart';
-import '../../data/mock/mock_scenarios.dart';
+import 'package:feedwise_mobile/data/models/scenario_model.dart';
+import 'package:feedwise_mobile/data/models/skill_model.dart';
+import 'package:feedwise_mobile/data/mock/mock_scenarios.dart';
 
 class InvestigationState {
   final ScenarioModel? scenario;
