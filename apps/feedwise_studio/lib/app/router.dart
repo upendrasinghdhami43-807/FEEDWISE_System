@@ -14,6 +14,8 @@ import '../features/settings/settings_screen.dart';
 import '../features/teacher/teacher_dashboard_screen.dart';
 import '../features/students/students_screen.dart';
 import '../features/students/student_detail_screen.dart';
+import '../features/classes/classes_screen.dart';
+
 
 // ─── Router Provider ──────────────────────────────────────────────────────────
 
@@ -89,7 +91,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/classes',
-        pageBuilder: (context, state) => _buildPage(state, const _ClassesPlaceholder()),
+        pageBuilder: (context, state) => _buildPage(state, const ClassesScreen()),
       ),
       GoRoute(
         path: '/students',

@@ -434,7 +434,7 @@ class _FilterDropdown<T> extends StatelessWidget {
           value: item,
           child: Text(labelOf(item)),
         )).toList(),
-        onChanged: (v) { if (v != null || T == ScenarioStatus?) onChanged(v as T); },
+        onChanged: (v) => onChanged(v as T),
       ),
     );
   }

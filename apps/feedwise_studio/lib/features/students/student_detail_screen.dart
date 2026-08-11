@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_typography.dart';
 import '../../core/providers/teacher_provider.dart';
-import '../../core/models/user_model.dart';
 import '../../shared/layouts/admin_layout.dart';
 import '../../shared/widgets/fw_avatar.dart';
 import '../../shared/widgets/fw_button.dart';
 import '../../shared/widgets/fw_card.dart';
 import '../../shared/widgets/fw_stat_card.dart';
+
 
 class StudentDetailScreen extends ConsumerWidget {
   final String studentId;

@@ -129,7 +129,7 @@ class MockData {
       expectedAction: Decision.report,
       sourceName: 'HealthGuru_Official',
       headline: 'DOCTORS HATE THIS: Local Tea CURES Diabetes, Cancer AND Depression! 🍵',
-      body: 'A grandmother\'s 200-year-old recipe is taking the world by storm. This miracle herbal tea, available for only $49.99, has been scientifically proven to cure...',
+      body: 'A grandmother\'s 200-year-old recipe is taking the world by storm. This miracle herbal tea, available for only \\$49.99, has been scientifically proven to cure...',
       likes: 34200, comments: 2100, shares: 8900,
       lessonTitle: 'Miracle Cure Clickbait',
       explanation: 'Medical misinformation exploits hope and fear. No single product "cures" multiple unrelated diseases. Look for official health authority statements.',
