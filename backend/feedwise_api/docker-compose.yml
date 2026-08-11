@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  feedwise_api:
+    build: .
+    container_name: feedwise_api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,11 +14,17 @@ from app.models.common import HealthResponse
 from app.repositories.data_store import InMemoryStore
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    app.state.store = InMemoryStore.with_seed_data()
+    yield
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
     configure_logging()
 
-    app = FastAPI(title=settings.app_name, version="0.1.0")
+    app = FastAPI(title=settings.app_name, version="0.1.0", lifespan=lifespan)
     register_exception_handlers(app)
 
     app.add_middleware(RequestIdMiddleware)
@@ -28,10 +36,6 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-
-    @app.on_event("startup")
-    async def startup_event() -> None:
-        app.state.store = InMemoryStore.with_seed_data()
 
     @app.get("/health", response_model=HealthResponse)
     async def health() -> HealthResponse:
