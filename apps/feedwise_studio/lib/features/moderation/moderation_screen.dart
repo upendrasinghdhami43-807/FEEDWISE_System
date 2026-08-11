@@ -74,16 +74,19 @@ class _ModerationScreenState extends ConsumerState<ModerationScreen> {
             const SizedBox(height: 20),
 
             // Filter tabs
-            Row(
-              children: [
-                _FilterTab(label: 'Pending',  count: pending,  selected: _filter == 'pending',  onTap: () => setState(() => _filter = 'pending')),
-                const SizedBox(width: 8),
-                _FilterTab(label: 'Approved', count: approved, selected: _filter == 'approved', onTap: () => setState(() => _filter = 'approved')),
-                const SizedBox(width: 8),
-                _FilterTab(label: 'Rejected', count: rejected, selected: _filter == 'rejected', onTap: () => setState(() => _filter = 'rejected')),
-                const SizedBox(width: 8),
-                _FilterTab(label: 'All',      count: _items.length, selected: _filter == 'all', onTap: () => setState(() => _filter = 'all')),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _FilterTab(label: 'Pending',  count: pending,  selected: _filter == 'pending',  onTap: () => setState(() => _filter = 'pending')),
+                  const SizedBox(width: 8),
+                  _FilterTab(label: 'Approved', count: approved, selected: _filter == 'approved', onTap: () => setState(() => _filter = 'approved')),
+                  const SizedBox(width: 8),
+                  _FilterTab(label: 'Rejected', count: rejected, selected: _filter == 'rejected', onTap: () => setState(() => _filter = 'rejected')),
+                  const SizedBox(width: 8),
+                  _FilterTab(label: 'All',      count: _items.length, selected: _filter == 'all', onTap: () => setState(() => _filter = 'all')),
+                ],
+              ),
             ),
             const SizedBox(height: 16),
 
@@ -123,9 +126,9 @@ class _SummaryCard extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.25)),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
       ),
       child: Row(
         children: [
@@ -155,7 +158,7 @@ class _FilterTab extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary500.withOpacity(0.15) : AppColors.surfaceElevatedDark,
+        color: selected ? AppColors.primary500.withValues(alpha: 0.15) : AppColors.surfaceElevatedDark,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: selected ? AppColors.primary500 : AppColors.borderDark),
       ),
@@ -200,7 +203,7 @@ class _ModerationCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  color: statusColor.withOpacity(0.1),
+                  color: statusColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
@@ -224,15 +227,27 @@ class _ModerationCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(item.title, style: AppTypography.titleMedium(AppColors.textPrimaryDark)),
           const SizedBox(height: 8),
-          Row(
+          Wrap(
+            spacing: 12,
+            runSpacing: 6,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              const Icon(Icons.person_outline, size: 14, color: AppColors.textTertiaryDark),
-              const SizedBox(width: 6),
-              Text('Submitted by ${item.submitterName}', style: AppTypography.bodySmall(AppColors.textSecondaryDark)),
-              const SizedBox(width: 12),
-              const Icon(Icons.email_outlined, size: 14, color: AppColors.textTertiaryDark),
-              const SizedBox(width: 6),
-              Text(item.submitterEmail, style: AppTypography.bodySmall(AppColors.textSecondaryDark)),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.person_outline, size: 14, color: AppColors.textTertiaryDark),
+                  const SizedBox(width: 6),
+                  Text('Submitted by ${item.submitterName}', style: AppTypography.bodySmall(AppColors.textSecondaryDark)),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.email_outlined, size: 14, color: AppColors.textTertiaryDark),
+                  const SizedBox(width: 6),
+                  Text(item.submitterEmail, style: AppTypography.bodySmall(AppColors.textSecondaryDark)),
+                ],
+              ),
             ],
           ),
           if (item.reviewNote != null) ...[

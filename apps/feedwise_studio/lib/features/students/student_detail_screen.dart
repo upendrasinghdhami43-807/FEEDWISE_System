@@ -19,9 +19,9 @@ class StudentDetailScreen extends ConsumerWidget {
     final student = ref.watch(selectedStudentProvider);
 
     if (student == null) {
-      return AdminLayout(
+      return const AdminLayout(
         title: 'Student Detail',
-        child: const Center(child: Text('Student not found', style: TextStyle(color: AppColors.textSecondaryDark))),
+        child: Center(child: Text('Student not found', style: TextStyle(color: AppColors.textSecondaryDark))),
       );
     }
 
@@ -193,9 +193,9 @@ class _StatusLabel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
     decoration: BoxDecoration(
-      color: _color.withOpacity(0.1),
+      color: _color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: _color.withOpacity(0.3)),
+      border: Border.all(color: _color.withValues(alpha: 0.3)),
     ),
     child: Text(status, style: TextStyle(color: _color, fontSize: 12, fontWeight: FontWeight.w600)),
   );
@@ -266,9 +266,9 @@ class _DecisionsCard extends StatelessWidget {
           ),
           const Divider(height: 1, color: AppColors.borderDark),
           // Header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Row(children: const [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Row(children: [
               Expanded(flex: 3, child: Text('Scenario', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 11, fontWeight: FontWeight.w600))),
               Expanded(child: Text('Action', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 11, fontWeight: FontWeight.w600))),
               Expanded(child: Text('Result', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 11, fontWeight: FontWeight.w600))),

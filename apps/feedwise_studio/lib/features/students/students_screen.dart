@@ -6,7 +6,6 @@ import '../../app/theme/app_typography.dart';
 import '../../core/providers/teacher_provider.dart';
 import '../../shared/layouts/admin_layout.dart';
 import '../../shared/widgets/fw_avatar.dart';
-import '../../shared/widgets/fw_button.dart';
 import '../../shared/widgets/fw_card.dart';
 import '../../shared/widgets/fw_text_field.dart';
 
@@ -27,90 +26,131 @@ class StudentsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // ─ Filter row
-            Row(
-              children: [
-                Expanded(
-                  child: FWSearchField(
-                    hint: 'Search students by name or email...',
-                    onChanged: notifier.setSearch,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final searchField = FWSearchField(
+                  hint: 'Search students by name or email...',
+                  onChanged: notifier.setSearch,
+                );
+                final filters = SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _FilterBtn(label: 'All',              selected: filter.filter == null,             onTap: () => notifier.setFilter(null)),
+                      const SizedBox(width: 8),
+                      _FilterBtn(label: '🔥 High Performers', selected: filter.filter == 'high_performers', onTap: () => notifier.setFilter('high_performers'), color: AppColors.success),
+                      const SizedBox(width: 8),
+                      _FilterBtn(label: '⚠️ Needs Support',  selected: filter.filter == 'struggling',     onTap: () => notifier.setFilter('struggling'), color: AppColors.error),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 12),
-                _FilterBtn(label: 'All',              selected: filter.filter == null,             onTap: () => notifier.setFilter(null)),
-                const SizedBox(width: 8),
-                _FilterBtn(label: '🔥 High Performers', selected: filter.filter == 'high_performers', onTap: () => notifier.setFilter('high_performers'), color: AppColors.success),
-                const SizedBox(width: 8),
-                _FilterBtn(label: '⚠️ Needs Support',  selected: filter.filter == 'struggling',     onTap: () => notifier.setFilter('struggling'), color: AppColors.error),
-              ],
-            ),
-            const SizedBox(height: 12),
+                );
 
-            // Sort row
-            Row(
-              children: [
-                Text('Sort by:', style: AppTypography.labelMedium(AppColors.textSecondaryDark)),
-                const SizedBox(width: 10),
-                ...StudentSortBy.values.map((s) => Padding(
-                  padding: const EdgeInsets.only(right: 6),
-                  child: _SortBtn(
-                    label: _sortLabel(s),
-                    selected: filter.sortBy == s,
-                    onTap: () => notifier.setSortBy(s),
+                final sortRow = SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Text('Sort by:', style: AppTypography.labelMedium(AppColors.textSecondaryDark)),
+                      const SizedBox(width: 10),
+                      ...StudentSortBy.values.map((s) => Padding(
+                        padding: const EdgeInsets.only(right: 6),
+                        child: _SortBtn(
+                          label: _sortLabel(s),
+                          selected: filter.sortBy == s,
+                          onTap: () => notifier.setSortBy(s),
+                        ),
+                      )),
+                      const SizedBox(width: 12),
+                      Text('${students.length} students', style: AppTypography.bodySmall(AppColors.textTertiaryDark)),
+                    ],
                   ),
-                )),
-                const Spacer(),
-                Text('${students.length} students', style: AppTypography.bodySmall(AppColors.textTertiaryDark)),
-              ],
+                );
+
+                if (constraints.maxWidth < 600) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      searchField,
+                      const SizedBox(height: 12),
+                      filters,
+                      const SizedBox(height: 12),
+                      sortRow,
+                    ],
+                  );
+                }
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(child: searchField),
+                        const SizedBox(width: 12),
+                        filters,
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(child: sortRow),
+                      ],
+                    ),
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 16),
 
             // Table
-            FWCard(
-              padding: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  // Header
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    decoration: const BoxDecoration(
-                      color: AppColors.surfaceElevatedDark,
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(14), topRight: Radius.circular(14)),
-                    ),
-                    child: Row(
-                      children: const [
-                        Expanded(flex: 3, child: _ColHeader('Student')),
-                        Expanded(flex: 2, child: _ColHeader('Class')),
-                        Expanded(child: _ColHeader('Score')),
-                        Expanded(child: _ColHeader('Level')),
-                        Expanded(child: _ColHeader('Streak')),
-                        Expanded(child: _ColHeader('Last Active')),
-                        SizedBox(width: 40, child: _ColHeader('')),
-                      ],
-                    ),
-                  ),
-                  const Divider(height: 1, color: AppColors.borderDark),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                width: 900,
+                child: FWCard(
+                  padding: EdgeInsets.zero,
+                  child: Column(
+                    children: [
+                      // Header
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        decoration: const BoxDecoration(
+                          color: AppColors.surfaceElevatedDark,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(14), topRight: Radius.circular(14)),
+                        ),
+                        child: const Row(
+                          children: [
+                            Expanded(flex: 3, child: _ColHeader('Student')),
+                            Expanded(flex: 2, child: _ColHeader('Class')),
+                            Expanded(child: _ColHeader('Score')),
+                            Expanded(child: _ColHeader('Level')),
+                            Expanded(child: _ColHeader('Streak')),
+                            Expanded(child: _ColHeader('Last Active')),
+                            SizedBox(width: 40, child: _ColHeader('')),
+                          ],
+                        ),
+                      ),
+                      const Divider(height: 1, color: AppColors.borderDark),
 
-                  if (students.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.all(40),
-                      child: Center(child: Text('No students match the filter', style: TextStyle(color: AppColors.textSecondaryDark))),
-                    )
-                  else
-                    ...students.asMap().entries.map((entry) {
-                      final i = entry.key;
-                      final s = entry.value;
-                      return Column(
-                        children: [
-                          _StudentRow(student: s, onTap: () {
-                            ref.read(selectedStudentIdProvider.notifier).state = s.id;
-                            context.go('/students/${s.id}');
-                          }),
-                          if (i < students.length - 1)
-                            const Divider(height: 1, color: AppColors.borderDark),
-                        ],
-                      );
-                    }),
-                ],
+                      if (students.isEmpty)
+                        const Padding(
+                          padding: EdgeInsets.all(40),
+                          child: Center(child: Text('No students match the filter', style: TextStyle(color: AppColors.textSecondaryDark))),
+                        )
+                      else
+                        ...students.asMap().entries.map((entry) {
+                          final i = entry.key;
+                          final s = entry.value;
+                          return Column(
+                            children: [
+                              _StudentRow(student: s, onTap: () {
+                                ref.read(selectedStudentIdProvider.notifier).state = s.id;
+                                context.go('/students/${s.id}');
+                              }),
+                              if (i < students.length - 1)
+                                const Divider(height: 1, color: AppColors.borderDark),
+                            ],
+                          );
+                        }),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
@@ -204,7 +244,7 @@ class _StudentRowState extends State<_StudentRow> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: AppColors.primary500.withOpacity(0.1),
+                        color: AppColors.primary500.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text('Lv.${s.milLevel}', style: const TextStyle(color: AppColors.primary400, fontSize: 12, fontWeight: FontWeight.w700)),
@@ -264,7 +304,7 @@ class _FilterBtn extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? c.withOpacity(0.12) : AppColors.surfaceElevatedDark,
+          color: selected ? c.withValues(alpha: 0.12) : AppColors.surfaceElevatedDark,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: selected ? c : AppColors.borderDark),
         ),
@@ -289,7 +329,7 @@ class _SortBtn extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary500.withOpacity(0.1) : Colors.transparent,
+        color: selected ? AppColors.primary500.withValues(alpha: 0.1) : Colors.transparent,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(label, style: TextStyle(color: selected ? AppColors.primary400 : AppColors.textTertiaryDark, fontSize: 12, fontWeight: selected ? FontWeight.w600 : FontWeight.w400)),

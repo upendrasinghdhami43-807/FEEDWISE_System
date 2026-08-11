@@ -81,7 +81,7 @@ class AppTheme {
     ),
     chipTheme: ChipThemeData(
       backgroundColor: AppColors.surfaceElevatedDark,
-      selectedColor: AppColors.primary500.withOpacity(0.2),
+      selectedColor: AppColors.primary500.withValues(alpha: 0.2),
       labelStyle: const TextStyle(fontSize: 12, color: AppColors.textSecondaryDark),
       side: const BorderSide(color: AppColors.borderDark, width: 1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -89,7 +89,7 @@ class AppTheme {
     dropdownMenuTheme: DropdownMenuThemeData(
       textStyle: const TextStyle(color: AppColors.textPrimaryDark, fontSize: 14),
       menuStyle: MenuStyle(
-        backgroundColor: WidgetStatePropertyAll(AppColors.surfaceElevatedDark),
+        backgroundColor: const WidgetStatePropertyAll(AppColors.surfaceElevatedDark),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -110,9 +110,9 @@ class AppTheme {
       ),
       textStyle: TextStyle(color: AppColors.textPrimaryDark, fontSize: 12),
     ),
-    scrollbarTheme: ScrollbarThemeData(
+    scrollbarTheme: const ScrollbarThemeData(
       thumbColor: WidgetStatePropertyAll(AppColors.borderLightDark),
-      radius: const Radius.circular(4),
+      radius: Radius.circular(4),
     ),
   );
 

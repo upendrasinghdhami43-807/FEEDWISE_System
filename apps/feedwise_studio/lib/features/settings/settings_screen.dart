@@ -120,13 +120,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               const SizedBox(height: 20),
 
               // ─ Language Management
-              _SettingsSection(
+              const _SettingsSection(
                 title: 'Language Management',
                 icon: Icons.language,
                 iconColor: AppColors.warning,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.symmetric(vertical: 8),
                     child: Wrap(
                       spacing: 10,
                       runSpacing: 10,
@@ -144,7 +144,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               const SizedBox(height: 20),
 
               // ─ Platform Info
-              _SettingsSection(
+              const _SettingsSection(
                 title: 'Platform Information',
                 icon: Icons.info_outline,
                 iconColor: AppColors.info,
@@ -160,7 +160,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
               // Danger zone
               FWCard(
-                border: Border.all(color: AppColors.error.withOpacity(0.3)),
+                border: Border.all(color: AppColors.error.withValues(alpha: 0.3)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -219,7 +219,7 @@ class _SettingsSection extends StatelessWidget {
             Container(
               width: 36, height: 36,
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.12),
+                color: iconColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(icon, size: 18, color: iconColor),
@@ -273,8 +273,8 @@ class _Toggle extends StatelessWidget {
   Widget build(BuildContext context) => Switch(
     value: value,
     onChanged: onChanged,
-    activeColor: AppColors.primary500,
-    trackColor: WidgetStatePropertyAll(value ? AppColors.primary500.withOpacity(0.3) : AppColors.borderDark),
+    activeThumbColor: AppColors.primary500,
+    trackColor: WidgetStatePropertyAll(value ? AppColors.primary500.withValues(alpha: 0.3) : AppColors.borderDark),
   );
 }
 
@@ -318,9 +318,9 @@ class _LangCardState extends State<_LangCard> {
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        color: _active ? AppColors.primary500.withOpacity(0.1) : AppColors.surfaceElevatedDark,
+        color: _active ? AppColors.primary500.withValues(alpha: 0.1) : AppColors.surfaceElevatedDark,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: _active ? AppColors.primary500.withOpacity(0.4) : AppColors.borderDark),
+        border: Border.all(color: _active ? AppColors.primary500.withValues(alpha: 0.4) : AppColors.borderDark),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

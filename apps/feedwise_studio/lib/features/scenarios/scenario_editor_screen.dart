@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_typography.dart';
 import '../../core/models/scenario_model.dart';
@@ -238,7 +237,7 @@ class _BasicInfoTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionTitle('Basic Information'),
+            const _SectionTitle('Basic Information'),
             const SizedBox(height: 20),
             Row(
               children: [
@@ -290,7 +289,7 @@ class _BasicInfoTab extends StatelessWidget {
                   label: Text(lang.toUpperCase()),
                   selected: languages.contains(lang),
                   onSelected: (_) => onLanguageToggled(lang),
-                  selectedColor: AppColors.primary500.withOpacity(0.2),
+                  selectedColor: AppColors.primary500.withValues(alpha: 0.2),
                   backgroundColor: AppColors.surfaceElevatedDark,
                   labelStyle: TextStyle(
                     color: languages.contains(lang) ? AppColors.primary400 : AppColors.textSecondaryDark,
@@ -329,7 +328,7 @@ class _ContentTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionTitle('Content — Feed Post'),
+            const _SectionTitle('Content — Feed Post'),
             const SizedBox(height: 20),
             FWTextField(label: 'Source Name', hint: 'e.g. NepaliTechBuzz, HealthGuru_Official', controller: sourceCtrl),
             const SizedBox(height: 16),
@@ -391,7 +390,7 @@ class _EvidenceTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionTitle('Evidence Data'),
+            const _SectionTitle('Evidence Data'),
             const SizedBox(height: 6),
             const Text('Define what students discover when they investigate each evidence category.', style: TextStyle(color: AppColors.textSecondaryDark, fontSize: 13)),
             const SizedBox(height: 24),
@@ -476,7 +475,7 @@ class _EvidenceEditorState extends State<_EvidenceEditor> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       decoration: BoxDecoration(
-                        color: _status == s ? c.withOpacity(0.15) : Colors.transparent,
+                        color: _status == s ? c.withValues(alpha: 0.15) : Colors.transparent,
                         borderRadius: BorderRadius.circular(6),
                         border: Border.all(color: _status == s ? c : AppColors.borderDark),
                       ),
@@ -511,7 +510,7 @@ class _ConsequencesTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionTitle('Consequences'),
+            const _SectionTitle('Consequences'),
             const SizedBox(height: 6),
             const Text('Define what happens after students make each decision.', style: TextStyle(color: AppColors.textSecondaryDark, fontSize: 13)),
             const SizedBox(height: 24),
@@ -559,9 +558,9 @@ class _ConsequenceEditorState extends State<_ConsequenceEditor> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
+                    color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: color.withOpacity(0.3)),
+                    border: Border.all(color: color.withValues(alpha: 0.3)),
                   ),
                   child: Text(
                     '${widget.decision.icon} ${widget.decision.label}',
@@ -575,13 +574,13 @@ class _ConsequenceEditorState extends State<_ConsequenceEditor> {
           ),
           if (_expanded) ...[
             const SizedBox(height: 16),
-            Row(
+            const Row(
               children: [
-                Expanded(child: const FWTextField(label: 'Reach (people)', hint: '10000')),
-                const SizedBox(width: 12),
-                Expanded(child: const FWTextField(label: 'Further Shares', hint: '500')),
-                const SizedBox(width: 12),
-                Expanded(child: const FWTextField(label: 'Credibility Δ', hint: '+10 or -15')),
+                Expanded(child: FWTextField(label: 'Reach (people)', hint: '10000')),
+                SizedBox(width: 12),
+                Expanded(child: FWTextField(label: 'Further Shares', hint: '500')),
+                SizedBox(width: 12),
+                Expanded(child: FWTextField(label: 'Credibility Δ', hint: '+10 or -15')),
               ],
             ),
             const SizedBox(height: 12),
@@ -608,7 +607,7 @@ class _LessonTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionTitle('MIL Lesson'),
+            const _SectionTitle('MIL Lesson'),
             const SizedBox(height: 20),
             FWTextField(label: 'Lesson Title', hint: 'What skill does this teach?', controller: titleCtrl),
             const SizedBox(height: 16),

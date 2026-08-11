@@ -58,7 +58,7 @@ class ScenarioPerformanceData {
   String get avgTimeFormatted {
     final mins = avgTimeSeconds ~/ 60;
     final secs = (avgTimeSeconds % 60).toInt();
-    return '${mins}:${secs.toString().padLeft(2, '0')}';
+    return '$mins:${secs.toString().padLeft(2, '0')}';
   }
 }
 

@@ -40,7 +40,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
                 decoration: BoxDecoration(
-                  color: _period == p ? AppColors.primary500.withOpacity(0.2) : Colors.transparent,
+                  color: _period == p ? AppColors.primary500.withValues(alpha: 0.2) : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -81,7 +81,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                     ]),
                     const SizedBox(height: 12),
                     Row(children: [
-                      Expanded(child: FWStatCard(value: '${analytics.engagement.avgPerUser.toStringAsFixed(1)}', label: 'Avg/User', icon: Icons.person_outline, iconColor: AppColors.tertiary400, delta: '+0.5')),
+                      Expanded(child: FWStatCard(value: analytics.engagement.avgPerUser.toStringAsFixed(1), label: 'Avg/User', icon: Icons.person_outline, iconColor: AppColors.tertiary400, delta: '+0.5')),
                       const SizedBox(width: 12),
                       Expanded(child: FWStatCard(value: '${analytics.engagement.completionRate.round()}%', label: 'Completion Rate', icon: Icons.trending_up, iconColor: AppColors.warning, delta: '+5%')),
                     ]),
@@ -93,7 +93,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                     const SizedBox(width: 16),
                     Expanded(child: FWStatCard(value: '${analytics.engagement.scenariosCompleted}', label: 'Completions', icon: Icons.check_circle_outline, iconColor: AppColors.success, delta: '+8%')),
                     const SizedBox(width: 16),
-                    Expanded(child: FWStatCard(value: '${analytics.engagement.avgPerUser.toStringAsFixed(1)}', label: 'Avg/User', icon: Icons.person_outline, iconColor: AppColors.tertiary400, delta: '+0.5')),
+                    Expanded(child: FWStatCard(value: analytics.engagement.avgPerUser.toStringAsFixed(1), label: 'Avg/User', icon: Icons.person_outline, iconColor: AppColors.tertiary400, delta: '+0.5')),
                     const SizedBox(width: 16),
                     Expanded(child: FWStatCard(value: '${analytics.engagement.completionRate.round()}%', label: 'Completion Rate', icon: Icons.trending_up, iconColor: AppColors.warning, delta: '+5%')),
                   ],
@@ -111,7 +111,7 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
                   const SizedBox(height: 24),
                   SkillTrendChart(
                     height: 240,
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    labels: const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                     series: analytics.skillTrends.map((t) => (
                       name: t.skillName,
                       values: t.points.map((p) => p.value).toList(),
@@ -168,25 +168,35 @@ class _ScenarioPerformanceTable extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: const FWSectionHeader(title: 'Scenario Performance', subtitle: 'Effectiveness by scenario'),
+          const Padding(
+            padding: EdgeInsets.all(20),
+            child: FWSectionHeader(title: 'Scenario Performance', subtitle: 'Effectiveness by scenario'),
           ),
           const Divider(height: 1, color: AppColors.borderDark),
-          // Header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            child: Row(
-              children: const [
-                Expanded(flex: 3, child: Text('Scenario', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
-                Expanded(child: Text('Correct %', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
-                Expanded(child: Text('Avg Time', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
-                Expanded(child: Text('Completions', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
-              ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: 600,
+              child: Column(
+                children: [
+                  // Header
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    child: Row(
+                      children: [
+                        Expanded(flex: 3, child: Text('Scenario', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
+                        Expanded(child: Text('Correct %', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
+                        Expanded(child: Text('Avg Time', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
+                        Expanded(child: Text('Completions', style: TextStyle(color: AppColors.textTertiaryDark, fontSize: 12, fontWeight: FontWeight.w600))),
+                      ],
+                    ),
+                  ),
+                  const Divider(height: 1, color: AppColors.borderDark),
+                  ...analytics.scenarioPerformance.map((data) => _PerformanceRow(data: data)),
+                ],
+              ),
             ),
           ),
-          const Divider(height: 1, color: AppColors.borderDark),
-          ...analytics.scenarioPerformance.map((data) => _PerformanceRow(data: data)),
         ],
       ),
     );
@@ -217,7 +227,7 @@ class _PerformanceRow extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: color.withOpacity(0.12),
+                        color: color.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text('${correct.round()}%', style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w700)),
@@ -262,12 +272,12 @@ class _SkillGapPanel extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.warning.withOpacity(0.08), AppColors.secondary400.withOpacity(0.04)],
+                colors: [AppColors.warning.withValues(alpha: 0.08), AppColors.secondary400.withValues(alpha: 0.04)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.warning.withOpacity(0.2)),
+              border: Border.all(color: AppColors.warning.withValues(alpha: 0.2)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -20,8 +20,7 @@ class _NavItem {
     required this.icon,
     required this.activeIcon,
     required this.route,
-    this.allowedRoles,
-  });
+  }) : allowedRoles = null;
 }
 
 const _adminNav = [
@@ -242,11 +241,11 @@ class _NavTileState extends State<_NavTile> {
               ),
               decoration: BoxDecoration(
                 color: isActive
-                  ? AppColors.primary500.withOpacity(0.15)
+                  ? AppColors.primary500.withValues(alpha: 0.15)
                   : (_isHovered ? AppColors.surfaceElevatedDark : Colors.transparent),
                 borderRadius: BorderRadius.circular(10),
                 border: isActive
-                  ? Border.all(color: AppColors.primary500.withOpacity(0.3), width: 1)
+                  ? Border.all(color: AppColors.primary500.withValues(alpha: 0.3), width: 1)
                   : null,
               ),
               child: Row(

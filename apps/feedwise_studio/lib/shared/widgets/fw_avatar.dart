@@ -40,8 +40,8 @@ class FWAvatar extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _defaultColor.withOpacity(0.2),
-        border: Border.all(color: _defaultColor.withOpacity(0.4), width: 1.5),
+        color: _defaultColor.withValues(alpha: 0.2),
+        border: Border.all(color: _defaultColor.withValues(alpha: 0.4), width: 1.5),
         image: imageUrl != null
           ? DecorationImage(image: NetworkImage(imageUrl!), fit: BoxFit.cover)
           : null,

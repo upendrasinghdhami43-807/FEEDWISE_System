@@ -23,7 +23,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.draft({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'Draft',
     color: AppColors.statusDraft,
-    backgroundColor: AppColors.statusDraft.withOpacity(0.12),
+    backgroundColor: AppColors.statusDraft.withValues(alpha: 0.12),
     icon: Icons.edit_outlined,
     size: size,
   );
@@ -31,7 +31,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.review({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'In Review',
     color: AppColors.statusReview,
-    backgroundColor: AppColors.statusReview.withOpacity(0.12),
+    backgroundColor: AppColors.statusReview.withValues(alpha: 0.12),
     icon: Icons.rate_review_outlined,
     size: size,
   );
@@ -39,7 +39,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.published({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'Published',
     color: AppColors.statusPublished,
-    backgroundColor: AppColors.statusPublished.withOpacity(0.12),
+    backgroundColor: AppColors.statusPublished.withValues(alpha: 0.12),
     icon: Icons.check_circle_outline,
     size: size,
   );
@@ -47,7 +47,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.archived({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'Archived',
     color: AppColors.statusArchived,
-    backgroundColor: AppColors.statusArchived.withOpacity(0.12),
+    backgroundColor: AppColors.statusArchived.withValues(alpha: 0.12),
     icon: Icons.archive_outlined,
     size: size,
   );
@@ -55,7 +55,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.factChecked({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'Fact Checked',
     color: AppColors.info,
-    backgroundColor: AppColors.info.withOpacity(0.12),
+    backgroundColor: AppColors.info.withValues(alpha: 0.12),
     icon: Icons.fact_check_outlined,
     size: size,
   );
@@ -63,7 +63,7 @@ class FWBadge extends StatelessWidget {
   factory FWBadge.milReviewed({FWBadgeSize size = FWBadgeSize.medium}) => FWBadge(
     label: 'MIL Reviewed',
     color: AppColors.primary400,
-    backgroundColor: AppColors.primary500.withOpacity(0.12),
+    backgroundColor: AppColors.primary500.withValues(alpha: 0.12),
     icon: Icons.school_outlined,
     size: size,
   );
@@ -76,9 +76,9 @@ class FWBadge extends StatelessWidget {
         ? const EdgeInsets.symmetric(horizontal: 8, vertical: 3)
         : const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: backgroundColor ?? color.withOpacity(0.12),
+        color: backgroundColor ?? color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withOpacity(0.3), width: 1),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -123,9 +123,9 @@ class FWRoleBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withOpacity(0.3), width: 1),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

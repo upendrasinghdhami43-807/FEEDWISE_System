@@ -55,17 +55,19 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/scenarios',
         pageBuilder: (context, state) => _buildPage(state, const ScenariosListScreen()),
-      ),
-      GoRoute(
-        path: '/scenarios/new',
-        pageBuilder: (context, state) => _buildPage(state, const ScenarioEditorScreen()),
-      ),
-      GoRoute(
-        path: '/scenarios/:id/edit',
-        pageBuilder: (context, state) => _buildPage(
-          state,
-          ScenarioEditorScreen(scenarioId: state.pathParameters['id']),
-        ),
+        routes: [
+          GoRoute(
+            path: 'new',
+            pageBuilder: (context, state) => _buildPage(state, const ScenarioEditorScreen()),
+          ),
+          GoRoute(
+            path: ':id/edit',
+            pageBuilder: (context, state) => _buildPage(
+              state,
+              ScenarioEditorScreen(scenarioId: state.pathParameters['id']),
+            ),
+          ),
+        ],
       ),
       GoRoute(
         path: '/users',
@@ -96,13 +98,15 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/students',
         pageBuilder: (context, state) => _buildPage(state, const StudentsScreen()),
-      ),
-      GoRoute(
-        path: '/students/:id',
-        pageBuilder: (context, state) => _buildPage(
-          state,
-          StudentDetailScreen(studentId: state.pathParameters['id'] ?? ''),
-        ),
+        routes: [
+          GoRoute(
+            path: ':id',
+            pageBuilder: (context, state) => _buildPage(
+              state,
+              StudentDetailScreen(studentId: state.pathParameters['id'] ?? ''),
+            ),
+          ),
+        ],
       ),
     ],
 
@@ -125,29 +129,6 @@ CustomTransitionPage<void> _buildPage(GoRouterState state, Widget child) {
 }
 
 // ─── Placeholder screens ──────────────────────────────────────────────────────
-
-class _ClassesPlaceholder extends StatelessWidget {
-  const _ClassesPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F1117),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.class_outlined, size: 64, color: Color(0xFF64748B)),
-            SizedBox(height: 16),
-            Text('Classes', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 24, fontWeight: FontWeight.w600)),
-            SizedBox(height: 8),
-            Text('Class management coming soon.', style: TextStyle(color: Color(0xFF64748B), fontSize: 14)),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class _NotFoundScreen extends StatelessWidget {
   const _NotFoundScreen();

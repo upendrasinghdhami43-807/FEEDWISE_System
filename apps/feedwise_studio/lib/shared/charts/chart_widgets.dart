@@ -95,7 +95,7 @@ class EngagementLineChart extends StatelessWidget {
             show: true,
             drawVerticalLine: false,
             horizontalInterval: maxValue / 4,
-            getDrawingHorizontalLine: (value) => FlLine(
+            getDrawingHorizontalLine: (value) => const FlLine(
               color: AppColors.borderDark,
               strokeWidth: 1,
               dashArray: [4, 4],
@@ -167,8 +167,8 @@ class EngagementLineChart extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    color.withOpacity(0.2),
-                    color.withOpacity(0.0),
+                    color.withValues(alpha: 0.2),
+                    color.withValues(alpha: 0.0),
                   ],
                 ),
               ),
@@ -218,7 +218,7 @@ class SkillTrendChart extends StatelessWidget {
                 show: true,
                 drawVerticalLine: false,
                 horizontalInterval: 20,
-                getDrawingHorizontalLine: (value) => FlLine(
+                getDrawingHorizontalLine: (value) => const FlLine(
                   color: AppColors.borderDark,
                   strokeWidth: 1,
                   dashArray: [4, 4],

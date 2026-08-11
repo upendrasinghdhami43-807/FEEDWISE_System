@@ -31,7 +31,7 @@ class FWButton extends StatefulWidget {
 class _FWButtonState extends State<FWButton> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
-  bool _isPressed = false;
+  final bool _isPressed = false;
 
   @override
   void initState() {
@@ -58,9 +58,9 @@ class _FWButtonState extends State<FWButton> with SingleTickerProviderStateMixin
       border: Colors.transparent,
     ),
     FWButtonVariant.secondary => (
-      bg: AppColors.primary500.withOpacity(0.12),
+      bg: AppColors.primary500.withValues(alpha: 0.12),
       fg: AppColors.primary400,
-      border: AppColors.primary500.withOpacity(0.4),
+      border: AppColors.primary500.withValues(alpha: 0.4),
     ),
     FWButtonVariant.ghost => (
       bg: Colors.transparent,
@@ -130,12 +130,12 @@ class _FWButtonState extends State<FWButton> with SingleTickerProviderStateMixin
                 duration: const Duration(milliseconds: 200),
                 padding: _padding,
                 decoration: BoxDecoration(
-                  color: isDisabled ? colors.bg.withOpacity(0.4) : colors.bg,
+                  color: isDisabled ? colors.bg.withValues(alpha: 0.4) : colors.bg,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: colors.border, width: 1.5),
                   boxShadow: (widget.variant == FWButtonVariant.primary && !isDisabled) ? [
                     BoxShadow(
-                      color: AppColors.primary500.withOpacity(0.35),
+                      color: AppColors.primary500.withValues(alpha: 0.35),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -161,7 +161,7 @@ class _FWButtonState extends State<FWButton> with SingleTickerProviderStateMixin
                         Text(
                           widget.label,
                           style: TextStyle(
-                            color: isDisabled ? colors.fg.withOpacity(0.5) : colors.fg,
+                            color: isDisabled ? colors.fg.withValues(alpha: 0.5) : colors.fg,
                             fontSize: _fontSize,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.2,

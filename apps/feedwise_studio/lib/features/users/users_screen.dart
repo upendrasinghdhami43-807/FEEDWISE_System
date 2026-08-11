@@ -55,85 +55,129 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Summary row
-            Row(
-              children: [
-                _RoleCountCard(role: 'All', count: MockData.allUsers.length, color: AppColors.primary500),
-                const SizedBox(width: 12),
-                _RoleCountCard(role: 'Admin', count: MockData.allUsers.where((u) => u.role == UserRole.admin).length, color: AppColors.secondary400),
-                const SizedBox(width: 12),
-                _RoleCountCard(role: 'Teacher', count: MockData.allUsers.where((u) => u.role == UserRole.teacher).length, color: AppColors.tertiary400),
-                const SizedBox(width: 12),
-                _RoleCountCard(role: 'Student', count: MockData.allUsers.where((u) => u.role == UserRole.student).length, color: AppColors.warning),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth < 600) {
+                  return Column(
+                    children: [
+                      Row(children: [
+                        _RoleCountCard(role: 'All', count: MockData.allUsers.length, color: AppColors.primary500),
+                        const SizedBox(width: 12),
+                        _RoleCountCard(role: 'Admin', count: MockData.allUsers.where((u) => u.role == UserRole.admin).length, color: AppColors.secondary400),
+                      ]),
+                      const SizedBox(height: 12),
+                      Row(children: [
+                        _RoleCountCard(role: 'Teacher', count: MockData.allUsers.where((u) => u.role == UserRole.teacher).length, color: AppColors.tertiary400),
+                        const SizedBox(width: 12),
+                        _RoleCountCard(role: 'Student', count: MockData.allUsers.where((u) => u.role == UserRole.student).length, color: AppColors.warning),
+                      ]),
+                    ],
+                  );
+                }
+                return Row(
+                  children: [
+                    _RoleCountCard(role: 'All', count: MockData.allUsers.length, color: AppColors.primary500),
+                    const SizedBox(width: 12),
+                    _RoleCountCard(role: 'Admin', count: MockData.allUsers.where((u) => u.role == UserRole.admin).length, color: AppColors.secondary400),
+                    const SizedBox(width: 12),
+                    _RoleCountCard(role: 'Teacher', count: MockData.allUsers.where((u) => u.role == UserRole.teacher).length, color: AppColors.tertiary400),
+                    const SizedBox(width: 12),
+                    _RoleCountCard(role: 'Student', count: MockData.allUsers.where((u) => u.role == UserRole.student).length, color: AppColors.warning),
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 20),
 
             // Filters row
-            Row(
-              children: [
-                Expanded(
-                  child: FWSearchField(
-                    hint: 'Search by name or email...',
-                    controller: _searchCtrl,
-                    onChanged: (v) => setState(() => _searchQuery = v),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final searchField = FWSearchField(
+                  hint: 'Search by name or email...',
+                  controller: _searchCtrl,
+                  onChanged: (v) => setState(() => _searchQuery = v),
+                );
+                final filters = SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _RoleFilterBtn(label: 'All', selected: _roleFilter == null, onTap: () => setState(() => _roleFilter = null)),
+                      const SizedBox(width: 8),
+                      _RoleFilterBtn(label: 'Admin', selected: _roleFilter == UserRole.admin, onTap: () => setState(() => _roleFilter = UserRole.admin)),
+                      const SizedBox(width: 8),
+                      _RoleFilterBtn(label: 'Teacher', selected: _roleFilter == UserRole.teacher, onTap: () => setState(() => _roleFilter = UserRole.teacher)),
+                      const SizedBox(width: 8),
+                      _RoleFilterBtn(label: 'Student', selected: _roleFilter == UserRole.student, onTap: () => setState(() => _roleFilter = UserRole.student)),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 12),
-                _RoleFilterBtn(label: 'All', selected: _roleFilter == null, onTap: () => setState(() => _roleFilter = null)),
-                const SizedBox(width: 8),
-                _RoleFilterBtn(label: 'Admin', selected: _roleFilter == UserRole.admin, onTap: () => setState(() => _roleFilter = UserRole.admin)),
-                const SizedBox(width: 8),
-                _RoleFilterBtn(label: 'Teacher', selected: _roleFilter == UserRole.teacher, onTap: () => setState(() => _roleFilter = UserRole.teacher)),
-                const SizedBox(width: 8),
-                _RoleFilterBtn(label: 'Student', selected: _roleFilter == UserRole.student, onTap: () => setState(() => _roleFilter = UserRole.student)),
-              ],
+                );
+                
+                if (constraints.maxWidth < 600) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [searchField, const SizedBox(height: 12), filters],
+                  );
+                }
+                return Row(
+                  children: [
+                    Expanded(child: searchField),
+                    const SizedBox(width: 12),
+                    filters,
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 16),
 
-            // Users table
-            FWCard(
-              padding: EdgeInsets.zero,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Table header
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                    decoration: const BoxDecoration(
-                      color: AppColors.surfaceElevatedDark,
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(14), topRight: Radius.circular(14)),
-                    ),
-                    child: Row(
-                      children: [
-                        const Expanded(flex: 3, child: _TableHeader('User')),
-                        const Expanded(flex: 2, child: _TableHeader('Email')),
-                        const Expanded(child: _TableHeader('Role')),
-                        const Expanded(child: _TableHeader('Level')),
-                        const Expanded(child: _TableHeader('Streak')),
-                        const Expanded(child: _TableHeader('Last Active')),
-                        const SizedBox(width: 80, child: _TableHeader('Actions')),
-                      ],
-                    ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                width: 900,
+                child: FWCard(
+                  padding: EdgeInsets.zero,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Table header
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                        decoration: const BoxDecoration(
+                          color: AppColors.surfaceElevatedDark,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(14), topRight: Radius.circular(14)),
+                        ),
+                        child: const Row(
+                          children: [
+                            Expanded(flex: 3, child: _TableHeader('User')),
+                            Expanded(flex: 2, child: _TableHeader('Email')),
+                            Expanded(child: _TableHeader('Role')),
+                            Expanded(child: _TableHeader('Level')),
+                            Expanded(child: _TableHeader('Streak')),
+                            Expanded(child: _TableHeader('Last Active')),
+                            SizedBox(width: 80, child: _TableHeader('Actions')),
+                          ],
+                        ),
+                      ),
+                      const Divider(height: 1, color: AppColors.borderDark),
+                      // Rows
+                      ...users.asMap().entries.map((entry) {
+                        final i = entry.key;
+                        final user = entry.value;
+                        return Column(
+                          children: [
+                            _UserRow(user: user),
+                            if (i < users.length - 1)
+                              const Divider(height: 1, color: AppColors.borderDark),
+                          ],
+                        );
+                      }),
+                      if (users.isEmpty)
+                        const Padding(
+                          padding: EdgeInsets.all(40),
+                          child: Center(child: Text('No users found', style: TextStyle(color: AppColors.textSecondaryDark))),
+                        ),
+                    ],
                   ),
-                  const Divider(height: 1, color: AppColors.borderDark),
-                  // Rows
-                  ...users.asMap().entries.map((entry) {
-                    final i = entry.key;
-                    final user = entry.value;
-                    return Column(
-                      children: [
-                        _UserRow(user: user),
-                        if (i < users.length - 1)
-                          const Divider(height: 1, color: AppColors.borderDark),
-                      ],
-                    );
-                  }),
-                  if (users.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.all(40),
-                      child: Center(child: Text('No users found', style: TextStyle(color: AppColors.textSecondaryDark))),
-                    ),
-                ],
+                ),
               ),
             ),
           ],
@@ -186,7 +230,7 @@ class _RoleFilterBtn extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary500.withOpacity(0.15) : AppColors.surfaceElevatedDark,
+        color: selected ? AppColors.primary500.withValues(alpha: 0.15) : AppColors.surfaceElevatedDark,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: selected ? AppColors.primary500 : AppColors.borderDark),
       ),

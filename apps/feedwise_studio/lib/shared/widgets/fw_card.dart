@@ -46,13 +46,13 @@ class _FWCardState extends State<FWCard> {
             borderRadius: BorderRadius.circular(widget.borderRadius),
             border: widget.border ?? Border.all(
               color: _isHovered
-                ? AppColors.primary500.withOpacity(0.3)
+                ? AppColors.primary500.withValues(alpha: 0.3)
                 : AppColors.borderDark,
               width: 1,
             ),
             boxShadow: widget.boxShadow ?? [
               BoxShadow(
-                color: Colors.black.withOpacity(_isHovered ? 0.3 : 0.15),
+                color: Colors.black.withValues(alpha: _isHovered ? 0.3 : 0.15),
                 blurRadius: _isHovered ? 24 : 12,
                 offset: Offset(0, _isHovered ? 8 : 4),
               ),
@@ -98,7 +98,7 @@ class FWGradientCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF6C5CE7).withOpacity(0.4),
+              color: const Color(0xFF6C5CE7).withValues(alpha: 0.4),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),

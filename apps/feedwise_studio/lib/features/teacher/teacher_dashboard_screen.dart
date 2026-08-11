@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_typography.dart';
-import '../../core/mock/mock_data.dart';
 import '../../core/providers/auth_provider.dart';
 import '../../core/providers/teacher_provider.dart';
 import '../../shared/layouts/admin_layout.dart';
@@ -188,9 +187,9 @@ class _SkillGapCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.warning.withOpacity(0.08),
+              color: AppColors.warning.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.warning.withOpacity(0.2)),
+              border: Border.all(color: AppColors.warning.withValues(alpha: 0.2)),
             ),
             child: Row(
               children: [
@@ -336,7 +335,7 @@ class _StudentsOverviewCard extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: _statusColor(student.statusLabel).withOpacity(0.1),
+                    color: _statusColor(student.statusLabel).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(student.statusLabel, style: TextStyle(color: _statusColor(student.statusLabel), fontSize: 10, fontWeight: FontWeight.w600)),
@@ -443,11 +442,13 @@ class _AssignChallengeDialogState extends State<_AssignChallengeDialog> {
                         setState(() => _isLoading = true);
                         await Future.delayed(const Duration(milliseconds: 800));
                         if (context.mounted) Navigator.pop(context);
-                        if (context.mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Challenge assigned successfully!'),
                           backgroundColor: AppColors.success,
                           behavior: SnackBarBehavior.floating,
                         ));
+                        }
                       },
                       isLoading: _isLoading,
                       isFullWidth: true,

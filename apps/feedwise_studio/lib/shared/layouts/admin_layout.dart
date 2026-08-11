@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../app/theme/app_colors.dart';
+import '../../core/models/user_model.dart';
 import '../../core/providers/auth_provider.dart';
 import 'sidebar.dart';
 
@@ -32,7 +34,7 @@ class _AdminLayoutState extends ConsumerState<AdminLayout> {
     final isMobile = width < 768;
 
     if (isMobile) {
-      return _MobileLayout(child: widget.child, title: widget.title, actions: widget.actions);
+      return _MobileLayout(title: widget.title, actions: widget.actions, child: widget.child);
     }
 
     return Scaffold(
@@ -80,10 +82,27 @@ class _MobileLayout extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final location = GoRouterState.of(context).matchedLocation;
+    final isDashboard = location == '/dashboard' || location == '/teacher';
+    final showBack = !isDashboard;
+    
     return Scaffold(
       backgroundColor: AppColors.surfaceDark,
       appBar: AppBar(
         backgroundColor: AppColors.surfaceCardDark,
+        leading: showBack
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back, color: AppColors.textSecondaryDark),
+                onPressed: () {
+                  if (GoRouter.of(context).canPop()) {
+                    context.pop();
+                  } else {
+                    final user = ref.read(currentUserProvider);
+                    context.go(user?.role == UserRole.teacher ? '/teacher' : '/dashboard');
+                  }
+                },
+              )
+            : null,
         title: Text(
           title,
           style: const TextStyle(color: AppColors.textPrimaryDark, fontSize: 18, fontWeight: FontWeight.w700),
@@ -91,9 +110,9 @@ class _MobileLayout extends ConsumerWidget {
         actions: actions,
         iconTheme: const IconThemeData(color: AppColors.textSecondaryDark),
       ),
-      drawer: Drawer(
+      drawer: showBack ? null : const Drawer(
         backgroundColor: AppColors.surfaceCardDark,
-        child: const StudioSidebar(),
+        child: StudioSidebar(),
       ),
       body: child,
     );
@@ -112,6 +131,9 @@ class _TopBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
+    final location = GoRouterState.of(context).matchedLocation;
+    final isDashboard = location == '/dashboard' || location == '/teacher';
+    final showBack = !isDashboard;
 
     return Container(
       height: 60,
@@ -122,6 +144,20 @@ class _TopBar extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
+          if (showBack) ...[
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: AppColors.textSecondaryDark),
+              tooltip: 'Back',
+              onPressed: () {
+                if (GoRouter.of(context).canPop()) {
+                  context.pop();
+                } else {
+                  context.go(user?.role == UserRole.teacher ? '/teacher' : '/dashboard');
+                }
+              },
+            ),
+            const SizedBox(width: 8),
+          ],
           // Page title
           Text(
             title,

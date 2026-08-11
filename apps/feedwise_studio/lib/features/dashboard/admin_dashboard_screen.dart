@@ -222,7 +222,7 @@ class _ScenarioPipeline extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FWSectionHeader(title: 'Scenario Pipeline', subtitle: 'Content review status'),
+          const FWSectionHeader(title: 'Scenario Pipeline', subtitle: 'Content review status'),
           const SizedBox(height: 20),
           _PipelineItem(label: 'Published', count: published, color: AppColors.statusPublished, icon: Icons.check_circle_outline),
           const SizedBox(height: 12),
@@ -259,7 +259,7 @@ class _PipelineItem extends StatelessWidget {
       children: [
         Container(
           width: 32, height: 32,
-          decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
           child: Icon(icon, size: 16, color: color),
         ),
         const SizedBox(width: 12),
@@ -341,7 +341,7 @@ class _ScenarioRow extends StatelessWidget {
           Container(
             width: 36, height: 36,
             decoration: BoxDecoration(
-              color: scenario.category.color.withOpacity(0.1),
+              color: scenario.category.color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Center(child: Text(scenario.category.emoji, style: const TextStyle(fontSize: 16))),
@@ -360,7 +360,7 @@ class _ScenarioRow extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
             decoration: BoxDecoration(
-              color: statusColor.withOpacity(0.12),
+              color: statusColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(scenario.status.label, style: TextStyle(color: statusColor, fontSize: 11, fontWeight: FontWeight.w600)),
@@ -396,9 +396,9 @@ class _SkillGapsCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.warning.withOpacity(0.08),
+              color: AppColors.warning.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.warning.withOpacity(0.25)),
+              border: Border.all(color: AppColors.warning.withValues(alpha: 0.25)),
             ),
             child: Row(
               children: [

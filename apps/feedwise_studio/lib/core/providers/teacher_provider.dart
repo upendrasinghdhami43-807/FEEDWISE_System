@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/class_model.dart';
-import '../models/user_model.dart';
 import '../mock/mock_data.dart';
 
 // ─── Teacher Providers ────────────────────────────────────────────────────────

@@ -54,41 +54,62 @@ class _ScenariosListScreenState extends ConsumerState<ScenariosListScreen> {
             const SizedBox(height: 24),
 
             // ─ Filters row
-            Row(
-              children: [
-                Expanded(
-                  child: FWSearchField(
-                    hint: 'Search scenarios by title, ID, category...',
-                    controller: _searchCtrl,
-                    onChanged: (v) {
-                      ref.read(scenariosProvider.notifier).search(v);
-                      setState(() {});
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                _FilterDropdown<ScenarioStatus?>(
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final searchField = FWSearchField(
+                  hint: 'Search scenarios...',
+                  controller: _searchCtrl,
+                  onChanged: (v) {
+                    ref.read(scenariosProvider.notifier).search(v);
+                    setState(() {});
+                  },
+                );
+                final statusDropdown = _FilterDropdown<ScenarioStatus?>(
                   hint: 'All Status',
                   value: _filterStatus,
-                  items: [null, ...ScenarioStatus.values],
+                  items: const [null, ...ScenarioStatus.values],
                   labelOf: (s) => s == null ? 'All Status' : s.label,
                   onChanged: (v) {
                     setState(() => _filterStatus = v);
                     ref.read(scenariosProvider.notifier).filterByStatus(v);
                   },
-                ),
-                const SizedBox(width: 12),
-                _FilterDropdown<ScenarioCategory?>(
+                );
+                final catDropdown = _FilterDropdown<ScenarioCategory?>(
                   hint: 'All Categories',
                   value: _filterCategory,
-                  items: [null, ...ScenarioCategory.values],
+                  items: const [null, ...ScenarioCategory.values],
                   labelOf: (c) => c == null ? 'All Categories' : c.displayName,
                   onChanged: (v) {
                     setState(() => _filterCategory = v);
                     ref.read(scenariosProvider.notifier).filterByCategory(v);
                   },
-                ),
-              ],
+                );
+
+                if (constraints.maxWidth < 600) {
+                  return Column(
+                    children: [
+                      searchField,
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(child: statusDropdown),
+                          const SizedBox(width: 12),
+                          Expanded(child: catDropdown),
+                        ],
+                      ),
+                    ],
+                  );
+                }
+                return Row(
+                  children: [
+                    Expanded(child: searchField),
+                    const SizedBox(width: 12),
+                    statusDropdown,
+                    const SizedBox(width: 12),
+                    catDropdown,
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 16),
 
@@ -165,9 +186,9 @@ class _PipelineSummary extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                            color: status.color.withOpacity(0.1),
+                            color: status.color.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: status.color.withOpacity(0.25)),
+                            border: Border.all(color: status.color.withValues(alpha: 0.25)),
                           ),
                           child: Row(
                             children: [
@@ -188,9 +209,9 @@ class _PipelineSummary extends StatelessWidget {
                         ),
                       ),
                       if (status != ScenarioStatus.published)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: const Icon(Icons.arrow_forward_rounded, size: 16, color: AppColors.textTertiaryDark),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          child: Icon(Icons.arrow_forward_rounded, size: 16, color: AppColors.textTertiaryDark),
                         ),
                     ],
                   );
@@ -218,11 +239,12 @@ class _ScenarioCard extends ConsumerWidget {
         children: [
           // Header row
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 40, height: 40,
                 decoration: BoxDecoration(
-                  color: scenario.category.color.withOpacity(0.1),
+                  color: scenario.category.color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(child: Text(scenario.category.emoji, style: const TextStyle(fontSize: 18))),
@@ -232,38 +254,37 @@ class _ScenarioCard extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 4,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(scenario.id, style: AppTypography.mono(AppColors.textTertiaryDark)),
-                        const SizedBox(width: 10),
                         _StatusBadge(status: scenario.status),
                       ],
                     ),
                     const SizedBox(height: 3),
                     Text(scenario.title, style: AppTypography.titleMedium(AppColors.textPrimaryDark)),
+                    const SizedBox(height: 12),
+                    // Actions
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        _ActionBtn(label: 'Edit', icon: Icons.edit_outlined, color: AppColors.primary400, onTap: () => context.go('/scenarios/${scenario.id}/edit')),
+                        _ActionBtn(label: 'Preview', icon: Icons.visibility_outlined, color: AppColors.textSecondaryDark, onTap: () {}),
+                        if (scenario.status == ScenarioStatus.draft)
+                          _ActionBtn(label: 'Submit', icon: Icons.send_outlined, color: AppColors.success, onTap: () {
+                            ref.read(scenariosProvider.notifier).updateStatus(scenario.id, ScenarioStatus.inReview);
+                          }),
+                        if (scenario.status == ScenarioStatus.inReview)
+                          _ActionBtn(label: 'Publish', icon: Icons.publish_outlined, color: AppColors.success, onTap: () {
+                            ref.read(scenariosProvider.notifier).updateStatus(scenario.id, ScenarioStatus.published);
+                          }),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(width: 12),
-              // Actions
-              Row(
-                children: [
-                  _ActionBtn(label: 'Edit', icon: Icons.edit_outlined, color: AppColors.primary400, onTap: () => context.go('/scenarios/${scenario.id}/edit')),
-                  const SizedBox(width: 8),
-                  _ActionBtn(label: 'Preview', icon: Icons.visibility_outlined, color: AppColors.textSecondaryDark, onTap: () {}),
-                  if (scenario.status == ScenarioStatus.draft) ...[
-                    const SizedBox(width: 8),
-                    _ActionBtn(label: 'Submit', icon: Icons.send_outlined, color: AppColors.success, onTap: () {
-                      ref.read(scenariosProvider.notifier).updateStatus(scenario.id, ScenarioStatus.inReview);
-                    }),
-                  ],
-                  if (scenario.status == ScenarioStatus.inReview) ...[
-                    const SizedBox(width: 8),
-                    _ActionBtn(label: 'Publish', icon: Icons.publish_outlined, color: AppColors.success, onTap: () {
-                      ref.read(scenariosProvider.notifier).updateStatus(scenario.id, ScenarioStatus.published);
-                    }),
-                  ],
-                ],
               ),
             ],
           ),
@@ -285,12 +306,12 @@ class _ScenarioCard extends ConsumerWidget {
             const SizedBox(height: 12),
             const Divider(color: AppColors.borderDark, height: 1),
             const SizedBox(height: 12),
-            Row(
+            Wrap(
+              spacing: 20,
+              runSpacing: 12,
               children: [
                 _StatsChip(label: 'Completions', value: '${scenario.completions}', color: AppColors.primary400),
-                const SizedBox(width: 20),
                 _StatsChip(label: 'Correct Rate', value: '${scenario.correctRate.round()}%', color: scenario.correctRate >= 60 ? AppColors.success : AppColors.error),
-                const SizedBox(width: 20),
                 _StatsChip(label: 'Avg Time', value: _formatTime(scenario.avgTimeSeconds), color: AppColors.textSecondaryDark),
               ],
             ),
@@ -381,9 +402,9 @@ class _ActionBtnState extends State<_ActionBtn> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: _hovered ? widget.color.withOpacity(0.15) : Colors.transparent,
+            color: _hovered ? widget.color.withValues(alpha: 0.15) : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: _hovered ? widget.color.withOpacity(0.3) : AppColors.borderDark),
+            border: Border.all(color: _hovered ? widget.color.withValues(alpha: 0.3) : AppColors.borderDark),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
