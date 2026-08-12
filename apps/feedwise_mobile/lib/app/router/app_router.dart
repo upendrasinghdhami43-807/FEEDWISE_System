@@ -22,6 +22,8 @@ import '../../features/progress/presentation/pages/progress_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
 import '../../features/community/presentation/pages/community_page.dart';
+import '../../features/community/presentation/pages/create_post_page.dart';
+import '../../features/community/presentation/pages/post_preview_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -159,6 +161,18 @@ final routerProvider = Provider<GoRouter>((ref) {
                 path: 'community',
                 name: 'community',
                 builder: (_, __) => const CommunityPage(),
+                routes: [
+                  GoRoute(
+                    path: 'create',
+                    name: 'createPost',
+                    builder: (_, __) => const CreatePostPage(),
+                  ),
+                  GoRoute(
+                    path: 'preview',
+                    name: 'postPreview',
+                    builder: (_, __) => const PostPreviewPage(),
+                  ),
+                ],
               ),
             ],
           ),
