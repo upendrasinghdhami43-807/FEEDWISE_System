@@ -263,46 +263,68 @@ toc_items = [
     ("2.3", "Gap in Existing Solutions", "6"),
     ("3", "Objectives", "6"),
     ("3.1", "Primary Objectives", "6"),
-    ("3.2", "Success Metrics", "7"),
-    ("4", "Proposed Solution", "7"),
-    ("4.1", "The FeedWise Approach", "7"),
-    ("4.2", "Core Learning Loop", "7"),
-    ("4.3", "Key Differentiators", "8"),
-    ("5", "System Architecture", "8"),
-    ("5.1", "High-Level Architecture", "8"),
-    ("5.2", "Frontend Architecture", "9"),
-    ("5.3", "Backend Architecture", "9"),
-    ("5.4", "AI Engine Architecture", "10"),
-    ("6", "Major Components", "10"),
-    ("6.1", "Simulated Social Feed", "10"),
-    ("6.2", "TrustLens Investigation Panel", "11"),
-    ("6.3", "Decision & Consequence Engine", "11"),
-    ("6.4", "MIL Academy", "11"),
-    ("6.5", "Newsroom Mode", "12"),
-    ("6.6", "Skill Radar & Progress System", "12"),
-    ("6.7", "Badge & Achievement System", "12"),
-    ("6.8", "Community Submission Module", "13"),
-    ("7", "User Roles", "13"),
-    ("7.1", "General User (Student)", "13"),
-    ("7.2", "Teacher / Educator", "14"),
-    ("7.3", "Administrator", "14"),
-    ("7.4", "Reviewer / MIL Professional", "15"),
-    ("7.5", "Role-Based Access Control", "15"),
-    ("8", "Relational Database Schema", "15"),
-    ("8.1", "Entity Relationship Overview", "16"),
-    ("8.2", "Core Tables", "16"),
-    ("8.3", "Learning & Progress Tables", "17"),
-    ("8.4", "Classroom Tables", "17"),
-    ("9", "Technology Stack", "18"),
-    ("10", "Security Architecture", "18"),
-    ("11", "Business Perspective", "19"),
-    ("11.1", "Revenue Model", "19"),
-    ("11.2", "Market Opportunity", "20"),
-    ("11.3", "Sustainability Plan", "20"),
-    ("12", "Future Development", "21"),
-    ("13", "Conclusion", "22"),
-    ("14", "References", "23"),
-    ("—", "Appendix A: Screenshots", "24"),
+    ("3.2", "Secondary Objectives", "7"),
+    ("3.3", "Success Metrics", "7"),
+    ("4", "Target Audience", "8"),
+    ("4.1", "Primary Users: Students & Youth", "8"),
+    ("4.2", "Secondary Users: Teachers & Educators", "8"),
+    ("4.3", "Tertiary Users: Administrators & MIL Professionals", "9"),
+    ("4.4", "Audience Sizing & Inclusion Strategy", "9"),
+    ("5", "Proposed Solution", "10"),
+    ("5.1", "The FeedWise Approach", "10"),
+    ("5.2", "Core Learning Loop", "10"),
+    ("5.3", "Key Differentiators", "11"),
+    ("6", "System Architecture", "11"),
+    ("6.1", "High-Level Architecture", "11"),
+    ("6.2", "Frontend Architecture", "12"),
+    ("6.3", "Backend Architecture", "12"),
+    ("6.4", "AI Engine Architecture", "13"),
+    ("7", "Major Components", "13"),
+    ("7.1", "Simulated Social Feed", "13"),
+    ("7.2", "TrustLens Investigation Panel", "14"),
+    ("7.3", "Decision & Consequence Engine", "14"),
+    ("7.4", "MIL Academy", "14"),
+    ("7.5", "Newsroom Mode", "15"),
+    ("7.6", "Skill Radar & Progress System", "15"),
+    ("7.7", "Badge & Achievement System", "15"),
+    ("7.8", "Community Submission Module", "16"),
+    ("8", "User Roles", "16"),
+    ("8.1", "General User (Student)", "16"),
+    ("8.2", "Teacher / Educator", "17"),
+    ("8.3", "Administrator", "17"),
+    ("8.4", "Reviewer / MIL Professional", "18"),
+    ("8.5", "Role-Based Access Control", "18"),
+    ("9", "Relational Database Schema", "18"),
+    ("9.1", "Entity Relationship Overview", "19"),
+    ("9.2", "Core Tables", "19"),
+    ("9.3", "Learning & Progress Tables", "20"),
+    ("9.4", "Classroom & Analytics Tables", "20"),
+    ("10", "Technology Stack", "21"),
+    ("11", "Security Architecture", "21"),
+    ("11.1", "Authentication & Authorization", "21"),
+    ("11.2", "Row Level Security (RLS)", "22"),
+    ("11.3", "OWASP Compliance", "22"),
+    ("12", "Business Perspective", "22"),
+    ("12.1", "Revenue Model", "22"),
+    ("12.2", "Market Opportunity", "23"),
+    ("12.3", "Sustainability Plan", "23"),
+    ("12.4", "Partnership Strategy", "24"),
+    ("13", "Creativity & Innovation", "24"),
+    ("13.1", "Creative Design Principles", "24"),
+    ("13.2", "Key Innovations", "25"),
+    ("13.3", "FeedWise vs. Existing Landscape", "25"),
+    ("14", "Feasibility Assessment", "26"),
+    ("14.1", "Technical Feasibility", "26"),
+    ("14.2", "Financial & Operational Feasibility", "26"),
+    ("14.3", "Market Feasibility", "27"),
+    ("14.4", "Risk Assessment & Mitigation", "27"),
+    ("15", "Future Development", "27"),
+    ("15.1", "Phase Roadmap", "27"),
+    ("15.2", "Planned Features", "28"),
+    ("15.3", "Research & Impact Measurement", "28"),
+    ("16", "Conclusion", "29"),
+    ("17", "References", "30"),
+    ("—", "Appendix A: Screenshots", "31"),
 ]
 
 for num, title, pg in toc_items:
@@ -465,12 +487,109 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 4 — PROPOSED SOLUTION
+#  SECTION 4 — TARGET AUDIENCE
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("4. Proposed Solution", level=1)
+heading("4. Target Audience", level=1)
 add_hr()
 
-heading("4.1 The FeedWise Approach", level=2)
+body(
+    "FeedWise is designed for a diverse, interconnected set of users who together form a "
+    "complete Media and Information Literacy learning ecosystem. Understanding the distinct "
+    "needs, contexts, and goals of each audience group drives every design and feature decision "
+    "on the platform."
+)
+
+heading("4.1 Primary Users: Students & Youth (Age 14–25)", level=2)
+body(
+    "Young people aged 14–25 are the primary and most critical audience for FeedWise. This "
+    "demographic is the heaviest consumer of social media content globally, the most frequent "
+    "sharer of unverified information, and simultaneously the most receptive to new ways of "
+    "learning when presented in an engaging, game-like format."
+)
+simple_table(
+    ["Characteristic", "Detail"],
+    [
+        ["Age Range",               "14–25 years (core); 12–13 with teacher supervision"],
+        ["Device Usage",            "Primarily mobile (Android-first); web-accessible for all platforms"],
+        ["Learning Context",        "Individual use, classroom, after-school programs, community groups"],
+        ["Language",                "English (launch); Nepali, Hindi, Bengali, Arabic (Phase 2 roadmap)"],
+        ["Geography — Primary",     "Nepal, India, Bangladesh — high digital adoption, low MIL infrastructure"],
+        ["Geography — Secondary",   "Sub-Saharan Africa, Southeast Asia, Eastern Europe, Latin America"],
+        ["Connectivity",            "Low-bandwidth-friendly design; offline caching in development roadmap"],
+        ["Education Level",         "Secondary school (Grade 8+) through undergraduate university"],
+        ["Motivation Driver",       "Skill growth, badges, leaderboard, classroom credit, career readiness"],
+    ],
+    col_widths=[2.4, 4.2]
+)
+body(
+    "FeedWise meets youth users where they already are — on social media-style interfaces — "
+    "using familiar patterns (feeds, likes, shares, badges) to build essential critical thinking skills."
+)
+
+heading("4.2 Secondary Users: Teachers & Educators", level=2)
+body(
+    "Teachers use FeedWise Studio to monitor student progress, identify skill gaps, assign "
+    "targeted challenges, and integrate MIL learning into formal curricula."
+)
+simple_table(
+    ["Characteristic", "Detail"],
+    [
+        ["Profile",          "Secondary school & university teachers; media studies; social studies; ICT educators; NGO facilitators"],
+        ["Primary Need",     "Class monitoring, skill gap analysis, assignment tools, exportable progress reports"],
+        ["Technical Comfort","Moderate — comfortable with Google Classroom or LMS; standard web browser"],
+        ["Core Pain Solved", "No existing tool gives teachers real-time MIL skill analytics for their students"],
+        ["Geography",        "Wherever FeedWise is deployed; initial pilot targeting Nepali and Indian schools"],
+    ],
+    col_widths=[2.2, 4.4]
+)
+
+heading("4.3 Tertiary Users: Administrators & MIL Professionals", level=2)
+body(
+    "Administrators and MIL professionals ensure the quality, accuracy, and educational integrity "
+    "of every scenario. They are typically experienced journalists, UNESCO-trained MIL educators, "
+    "academic researchers in information science, or content moderation specialists."
+)
+simple_table(
+    ["Characteristic", "Detail"],
+    [
+        ["Profile",          "MIL researchers, journalists, UNESCO educators, digital rights advocates"],
+        ["Primary Need",     "Scenario CMS, review pipeline, content quality control, AI output oversight"],
+        ["Key Value",        "Platform credibility depends on their review — the human check on AI"],
+        ["Engagement",       "Salaried partner institutions or volunteer with professional development recognition"],
+        ["Reach",            "Global — remote content review possible from any location"],
+    ],
+    col_widths=[2.2, 4.4]
+)
+
+heading("4.4 Audience Sizing & Inclusion Strategy", level=2)
+body(
+    "FeedWise's core MIL learning experience is free, free forever, and designed to work on "
+    "entry-level Android devices with limited connectivity. Inclusion is not an afterthought — "
+    "it is the product mission.",
+    bold=True, color=DEEP_BLUE
+)
+simple_table(
+    ["Audience Segment",           "Global Scale",              "Accessibility Strategy"],
+    [
+        ["Youth 14–25",                "1.8 billion globally",     "Free access forever; mobile-first; low-bandwidth design"],
+        ["Teachers / Educators",       "90 million globally",      "Free teacher accounts; institutional onboarding support"],
+        ["MIL Professionals",          "500K+ (UNESCO estimate)",  "Volunteer reviewer program; professional development credit"],
+        ["Marginalized Communities",   "Billions in low-resource settings", "Offline mode roadmap; multilingual content"],
+        ["Students with Disabilities", "~15% of all learners",    "Screen reader support; high-contrast mode; text scaling"],
+    ],
+    col_widths=[2.2, 1.8, 2.6]
+)
+
+doc.add_page_break()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  SECTION 5 — PROPOSED SOLUTION
+# ═══════════════════════════════════════════════════════════════════════════════
+heading("5. Proposed Solution", level=1)
+add_hr()
+
+heading("5.1 The FeedWise Approach", level=2)
 body(
     "FeedWise proposes a simulation-first, evidence-based approach to MIL education. Rather than "
     "delivering content about media literacy, FeedWise puts students inside a realistic information "
@@ -483,7 +602,7 @@ bullet("Evidence-First: Every decision must be supported by evidence. The platfo
 bullet("Consequence-Aware: Every decision produces measurable simulated impact, making the cost of poor information hygiene tangible and immediate.")
 bullet("Human-Reviewed: Every scenario on the platform is reviewed and approved by qualified MIL educators before publication, ensuring educational integrity.")
 
-heading("4.2 Core Learning Loop", level=2)
+heading("5.2 Core Learning Loop", level=2)
 body(
     "Every user session on FeedWise follows a carefully designed eight-step learning loop:"
 )
@@ -500,7 +619,7 @@ loop_rows = [
 ]
 simple_table(["Step", "Stage", "What Happens"], loop_rows, col_widths=[0.5, 1.4, 4.7])
 
-heading("4.3 Key Differentiators", level=2)
+heading("5.3 Key Differentiators", level=2)
 simple_table(
     ["What Exists Today", "What FeedWise Does Differently"],
     [
@@ -519,12 +638,12 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 5 — SYSTEM ARCHITECTURE
+#  SECTION 6 — SYSTEM ARCHITECTURE
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("5. System Architecture", level=1)
+heading("6. System Architecture", level=1)
 add_hr()
 
-heading("5.1 High-Level Architecture", level=2)
+heading("6.1 High-Level Architecture", level=2)
 body(
     "FeedWise is a three-tier, cloud-native architecture consisting of two Flutter client "
     "applications, one FastAPI backend server, and a Supabase-managed PostgreSQL database. "
@@ -566,7 +685,7 @@ r_arch = p_arch.add_run(arch_text)
 set_font(r_arch, "Courier New", 9, color=DARK_GREY)
 p_arch.paragraph_format.space_after = Pt(8)
 
-heading("5.2 Frontend Architecture", level=2)
+heading("6.2 Frontend Architecture", level=2)
 body(
     "Both Flutter applications use the Riverpod state management library for reactive, "
     "dependency-injected state, and GoRouter for declarative, type-safe navigation. "
@@ -587,7 +706,7 @@ simple_table(
     col_widths=[1.8, 2.0, 2.8]
 )
 
-heading("5.3 Backend Architecture", level=2)
+heading("6.3 Backend Architecture", level=2)
 body(
     "The FastAPI backend uses a strict layered architecture: API routes call service layer only; "
     "the service layer orchestrates repositories and the AI engine; repositories handle all "
@@ -605,7 +724,7 @@ simple_table(
     col_widths=[2.5, 4.1]
 )
 
-heading("5.4 AI Engine Architecture", level=2)
+heading("6.4 AI Engine Architecture", level=2)
 body(
     "FeedWise's AI engine operates on a fundamental principle: evidence-first, AI-assisted, "
     "human-reviewed. The AI engine does NOT issue true/false verdicts — doing so would "
@@ -626,12 +745,12 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 6 — MAJOR COMPONENTS
+#  SECTION 7 — MAJOR COMPONENTS
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("6. Major Components", level=1)
+heading("7. Major Components", level=1)
 add_hr()
 
-heading("6.1 Simulated Social Feed", level=2)
+heading("7.1 Simulated Social Feed", level=2)
 body(
     "The social feed is the primary interface of FeedWise. It renders realistic social media "
     "post cards with author names, headlines, body text, engagement numbers (likes, shares, "
@@ -642,7 +761,7 @@ body(
     "and ensuring progressive challenge."
 )
 
-heading("6.2 TrustLens Investigation Panel", level=2)
+heading("7.2 TrustLens Investigation Panel", level=2)
 body(
     "TrustLens is FeedWise's signature investigation tool — a structured, multi-section panel "
     "that guides users through a professional information verification workflow. It exposes "
@@ -658,7 +777,7 @@ body(
     "signals are presented as evidence for the user to evaluate — never as a final verdict."
 )
 
-heading("6.3 Decision & Consequence Engine", level=2)
+heading("7.3 Decision & Consequence Engine", level=2)
 body(
     "After investigating, the user selects one of four decisions: SHARE, VERIFY, REPORT, or IGNORE. "
     "Each decision triggers the Consequence Engine, which renders a consequence card showing:"
@@ -673,7 +792,7 @@ body(
     "far more effective than abstract warnings about the dangers of misinformation."
 )
 
-heading("6.4 MIL Academy", level=2)
+heading("7.4 MIL Academy", level=2)
 body(
     "The MIL Academy is the structured educational layer of FeedWise. It organizes learning "
     "content into modules aligned with the five MIL skill dimensions: Source Verification, "
@@ -684,7 +803,7 @@ body(
     "user's skill radar, ensuring every learning activity has measurable impact."
 )
 
-heading("6.5 Newsroom Mode", level=2)
+heading("7.5 Newsroom Mode", level=2)
 body(
     "Newsroom Mode ('Newsroom Zero') places the user in the role of a news editor deciding "
     "which stories to publish. This mode builds editorial empathy — users experience the "
@@ -694,7 +813,7 @@ body(
     "and advertiser relationships, creating a holistic understanding of the media industry ecosystem."
 )
 
-heading("6.6 Skill Radar & Progress System", level=2)
+heading("7.6 Skill Radar & Progress System", level=2)
 body(
     "Every action on FeedWise contributes to a five-dimensional skill radar that visualizes "
     "the user's MIL competency profile. The five axes are: Source Verification, Evidence "
@@ -705,7 +824,7 @@ body(
     "and teachers (for monitoring class-wide skill gaps)."
 )
 
-heading("6.7 Badge & Achievement System", level=2)
+heading("7.7 Badge & Achievement System", level=2)
 body(
     "FeedWise includes a comprehensive badge system that recognizes skill mastery and learning "
     "milestones. Badges are organized across categories:"
@@ -724,7 +843,7 @@ simple_table(
     col_widths=[1.8, 2.6, 2.2]
 )
 
-heading("6.8 Community Submission Module", level=2)
+heading("7.8 Community Submission Module", level=2)
 body(
     "Advanced users can submit real-world information claims for community investigation. "
     "Submissions go through a moderation pipeline: submitted → reviewed by MIL professionals → "
@@ -737,9 +856,9 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 7 — USER ROLES
+#  SECTION 8 — USER ROLES
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("7. User Roles", level=1)
+heading("8. User Roles", level=1)
 add_hr()
 
 body(
@@ -749,7 +868,7 @@ body(
     "Row Level Security (RLS) policies."
 )
 
-heading("7.1 General User (Student / Youth)", level=2)
+heading("8.1 General User (Student / Youth)", level=2)
 body(
     "The general user role is the primary learner — a student, young person, or any member "
     "of the public who engages with FeedWise as a media literacy learning tool."
@@ -770,7 +889,7 @@ simple_table(
     col_widths=[2.2, 4.4]
 )
 
-heading("7.2 Teacher / Educator Role", level=2)
+heading("8.2 Teacher / Educator Role", level=2)
 body(
     "Teachers use the FeedWise Studio (the admin/teacher portal) to manage classrooms, "
     "monitor student progress, identify skill gaps, and assign targeted learning challenges."
@@ -790,7 +909,7 @@ simple_table(
     col_widths=[2.2, 4.4]
 )
 
-heading("7.3 Administrator Role", level=2)
+heading("8.3 Administrator Role", level=2)
 body(
     "Administrators are the platform stewards — typically MIL professionals, journalists, "
     "or senior educators. They maintain the quality, accuracy, and integrity of every piece "
@@ -813,7 +932,7 @@ simple_table(
     col_widths=[2.4, 4.2]
 )
 
-heading("7.4 Reviewer / MIL Professional Role", level=2)
+heading("8.4 Reviewer / MIL Professional Role", level=2)
 body(
     "Reviewers are specialized users — typically academic MIL researchers, experienced journalists, "
     "or certified educators — who focus specifically on content quality review. They can approve "
@@ -821,7 +940,7 @@ body(
     "additional verification. They do not have full admin access (user management, platform settings)."
 )
 
-heading("7.5 Role-Based Access Control (RBAC)", level=2)
+heading("8.5 Role-Based Access Control (RBAC)", level=2)
 simple_table(
     ["Permission", "Student", "Teacher", "Reviewer", "Admin"],
     [
@@ -844,12 +963,12 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 8 — DATABASE SCHEMA
+#  SECTION 9 — DATABASE SCHEMA
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("8. Relational Database Schema", level=1)
+heading("9. Relational Database Schema", level=1)
 add_hr()
 
-heading("8.1 Entity Relationship Overview", level=2)
+heading("9.1 Entity Relationship Overview", level=2)
 body(
     "FeedWise uses PostgreSQL hosted on Supabase, with Row Level Security (RLS) enforced "
     "at the database level. The schema is organized into six groups of tables: Core (users "
@@ -880,7 +999,7 @@ r_er = p_er.add_run(er_text)
 set_font(r_er, "Courier New", 9, color=DARK_GREY)
 p_er.paragraph_format.space_after = Pt(8)
 
-heading("8.2 Core Tables — Users & Roles", level=2)
+heading("9.2 Core Tables — Users & Roles", level=2)
 simple_table(
     ["Table", "Key Columns", "Purpose"],
     [
@@ -903,7 +1022,7 @@ simple_table(
     col_widths=[1.5, 3.6, 1.7]
 )
 
-heading("8.3 Learning & Progress Tables", level=2)
+heading("9.3 Learning & Progress Tables", level=2)
 simple_table(
     ["Table", "Key Columns", "Purpose"],
     [
@@ -917,7 +1036,7 @@ simple_table(
     col_widths=[2.0, 3.4, 1.4]
 )
 
-heading("8.4 Classroom & Analytics Tables", level=2)
+heading("9.4 Classroom & Analytics Tables", level=2)
 simple_table(
     ["Table", "Key Columns", "Purpose"],
     [
@@ -936,9 +1055,9 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 9 — TECHNOLOGY STACK
+#  SECTION 10 — TECHNOLOGY STACK
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("9. Technology Stack", level=1)
+heading("10. Technology Stack", level=1)
 add_hr()
 
 simple_table(
@@ -967,12 +1086,12 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 10 — SECURITY ARCHITECTURE
+#  SECTION 11 — SECURITY ARCHITECTURE
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("10. Security Architecture", level=1)
+heading("11. Security Architecture", level=1)
 add_hr()
 
-heading("10.1 Authentication & Authorization", level=2)
+heading("11.1 Authentication & Authorization", level=2)
 body(
     "All authentication is handled by Supabase Auth using JWT tokens. The FastAPI backend "
     "verifies every JWT using the Supabase JWT secret on every protected request. Role claims "
@@ -981,7 +1100,7 @@ body(
     "client-side."
 )
 
-heading("10.2 Row Level Security (RLS)", level=2)
+heading("11.2 Row Level Security (RLS)", level=2)
 body(
     "Row Level Security is enabled on all tables in the PostgreSQL database. Every SELECT, "
     "INSERT, UPDATE, and DELETE operation is subject to RLS policies that enforce user ownership "
@@ -994,7 +1113,7 @@ bullet("Teachers can read data of students in their own classes only.")
 bullet("Administrators can read all data for their role scope.")
 bullet("Published scenarios are readable by all authenticated users; draft scenarios only by admins.")
 
-heading("10.3 OWASP Compliance", level=2)
+heading("11.3 OWASP Compliance", level=2)
 simple_table(
     ["OWASP Category", "FeedWise Mitigation"],
     [
@@ -1015,12 +1134,12 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 11 — BUSINESS PERSPECTIVE
+#  SECTION 12 — BUSINESS PERSPECTIVE
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("11. Business Perspective", level=1)
+heading("12. Business Perspective", level=1)
 add_hr()
 
-heading("11.1 Revenue Model", level=2)
+heading("12.1 Revenue Model", level=2)
 body(
     "FeedWise is built on a 'freemium for learners, institutional for organizations' model. "
     "Core media literacy learning remains permanently free for youth. Revenue is generated "
@@ -1042,7 +1161,7 @@ simple_table(
     col_widths=[2.2, 2.0, 2.4]
 )
 
-heading("11.2 Market Opportunity", level=2)
+heading("12.2 Market Opportunity", level=2)
 body(
     "The global EdTech market was valued at USD 254 billion in 2023 and is projected to reach "
     "USD 605 billion by 2027. The MIL and digital literacy sub-segment is growing at 22% CAGR "
@@ -1055,7 +1174,7 @@ body(
     "serve this market with a multilingual, low-bandwidth-friendly, mobile-first design."
 )
 
-heading("11.3 Sustainability Plan", level=2)
+heading("12.3 Sustainability Plan", level=2)
 simple_table(
     ["Phase", "Timeline", "Key Activity", "Funding Source"],
     [
@@ -1070,7 +1189,7 @@ simple_table(
 
 body("Core principle: Youth media literacy learning remains free forever.", bold=True, color=DEEP_BLUE)
 
-heading("11.4 Partnership Strategy", level=2)
+heading("12.4 Partnership Strategy", level=2)
 bullet("UNESCO / UNAOC: Formal partnership for MIL content validation and global distribution.")
 bullet("Media Organizations: BBC Media Action, Reuters Foundation, Agence France-Presse for scenario content and professional review.")
 bullet("Academic Institutions: Tribhuvan University, IIT, and regional universities for research partnerships and student engagement.")
@@ -1081,12 +1200,165 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 12 — FUTURE DEVELOPMENT
+#  SECTION 13 — CREATIVITY & INNOVATION
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("12. Future Development", level=1)
+heading("13. Creativity & Innovation", level=1)
 add_hr()
 
-heading("12.1 Phase Roadmap", level=2)
+body(
+    "FeedWise is not an incremental improvement on existing media literacy tools. It represents "
+    "a fundamentally new paradigm — one that reimagines how MIL education is delivered, "
+    "experienced, and measured. This section documents the creative design decisions and "
+    "innovations that set FeedWise apart."
+)
+
+heading("13.1 Creative Design Principles", level=2)
+body(
+    "Every creative decision in FeedWise flows from a single insight: young people learn by "
+    "doing, not by being told. This led to five foundational creative principles:"
+)
+simple_table(
+    ["Creative Principle", "Design Expression in FeedWise"],
+    [
+        ["Simulation Over Theory",
+         "A realistic, consequence-modelled social media environment replaces textbook lessons — "
+         "every action teaches rather than every page"],
+        ["Consequences as Curriculum",
+         "The Consequence Engine makes the cost of poor information hygiene tangible and immediate, "
+         "not abstract — learners feel the impact of their decisions"],
+        ["Evidence Over Verdicts",
+         "TrustLens never says 'this is fake.' It shows evidence and asks 'what do YOU conclude?' — "
+         "teaching the process of reasoning, not dependence on verdicts"],
+        ["AI Assists, Humans Decide",
+         "AI analysis is one input among many — never the final authority — the creative inverse "
+         "of most AI fact-checking tools that replace human judgment"],
+        ["Progress You Can See",
+         "The 5-dimension radar chart transforms abstract skill growth into a visible, living "
+         "portrait of a learner's MIL competency across five distinct dimensions"],
+    ],
+    col_widths=[2.2, 4.4]
+)
+
+heading("13.2 Key Innovations", level=2)
+bullet("TrustLens Investigation Panel: The first structured, multi-dimension evidence investigation tool designed specifically for youth — combining source credibility, author identity, date verification, evidence quality, and AI language signal analysis into a single guided workflow.")
+bullet("Consequence Engine: A real-time impact simulator that translates information decisions into measurable simulated outcomes — reach numbers, credibility scores, community effects. No equivalent exists in any existing MIL platform.")
+bullet("AI-Assisted, Human-Reviewed Pipeline: AI drafts explanations and flags linguistic signals, but every scenario is reviewed and approved by a qualified MIL professional before publication — combining the scale of AI with the integrity of expert oversight.")
+bullet("5-Dimension Skill Radar: A continuous, multi-axis competency visualization mapping growth across Source Verification, Evidence Evaluation, AI Literacy, Bias Detection, and Digital Safety — providing a holistic, actionable portrait of MIL development.")
+bullet("Newsroom Mode (Editorial Perspective Shift): An innovative role-reversal exercise — students become editors, experiencing the pressures and ethical trade-offs of responsible journalism and building empathy alongside critical thinking skills.")
+bullet("Community Scenario Ecosystem: A self-sustaining platform where advanced learners contribute real-world claims for peer investigation, transforming passive learners into active MIL community contributors and content creators.")
+
+heading("13.3 FeedWise vs. Existing Landscape", level=2)
+simple_table(
+    ["What Exists Today",                              "FeedWise Innovation"],
+    [
+        ["Fact-checkers issue binary TRUE / FALSE",         "FeedWise teaches the evaluation process — never issues a verdict"],
+        ["Educational apps deliver content passively",      "FeedWise puts learners inside a simulated information environment"],
+        ["Games focus on entertainment value",              "Every FeedWise mechanic maps to a measurable MIL learning outcome"],
+        ["AI tools replace human judgment",                 "FeedWise AI augments investigation; MIL experts review every result"],
+        ["Individual-focused learning tools",               "FeedWise integrates classroom, community, and professional layers"],
+        ["Progress as scores or points",                    "FeedWise tracks 5-dimensional skill development, not just correct answers"],
+        ["English-only, Western-context content",           "FeedWise is multilingual-by-design with culturally adapted libraries"],
+        ["One-time awareness campaigns",                    "FeedWise builds a self-sustaining, community-powered scenario ecosystem"],
+    ],
+    col_widths=[3.0, 3.6]
+)
+
+doc.add_page_break()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  SECTION 14 — FEASIBILITY ASSESSMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+heading("14. Feasibility Assessment", level=1)
+add_hr()
+
+body(
+    "FeedWise is not a concept paper — it is a working platform with a clear technical foundation, "
+    "a realistic cost structure, and a validated market need. This section provides an honest "
+    "assessment of technical, financial, operational, and market feasibility."
+)
+
+heading("14.1 Technical Feasibility", level=2)
+body(
+    "Every technology used in FeedWise is production-proven and widely deployed at scale. "
+    "No experimental or unproven technology is required for the platform to function."
+)
+simple_table(
+    ["Component",              "Technology",                   "Feasibility Evidence"],
+    [
+        ["Mobile + Web App",       "Flutter (Dart) 3.27+",          "Powers BMW, eBay, Google Pay apps globally"],
+        ["Admin Portal",           "Flutter Web",                   "Same codebase as user app; proven cross-platform"],
+        ["Backend API",            "FastAPI (Python) 0.115+",       "Used by Microsoft, Uber, Netflix for high-throughput APIs"],
+        ["Database",               "PostgreSQL via Supabase",        "Managed at scale; enterprise SLA available; open-source"],
+        ["Authentication",         "Supabase Auth (JWT/OAuth2)",     "Industry standard; battle-tested security model"],
+        ["AI/NLP",                 "OpenAI / Gemini API",            "Stable, documented; fallback model switching supported"],
+        ["Hosting",                "Render.com + Firebase Hosting",  "Free-tier viable; auto-deploys from GitHub on push"],
+    ],
+    col_widths=[1.8, 2.0, 2.8]
+)
+body("Current Development Status (as of August 2026):", bold=True, color=DEEP_BLUE)
+bullet("Backend API: Fully scaffolded with FastAPI; all core routes implemented; 10+ automated tests passing.")
+bullet("Database: Complete 25-table PostgreSQL schema with Row Level Security policies and seed data deployed.")
+bullet("Flutter User App: Core navigation, feed, TrustLens investigation, decision, and profile screens implemented.")
+bullet("Flutter Admin Studio: Scenario CMS and teacher dashboard architecture scaffolded and in development.")
+bullet("AI Engine: Text signal analysis and explanation generation module integrated and tested with mock scenarios.")
+
+heading("14.2 Financial & Operational Feasibility", level=2)
+simple_table(
+    ["Cost Category",             "Year 1 Estimate",       "Mitigation Strategy"],
+    [
+        ["Infrastructure (Hosting)",   "USD 0–200 / month",   "Render.com + Supabase free tiers; costs scale with users"],
+        ["Domain & SSL Certificate",   "USD 15 / year",       "Standard annual cost"],
+        ["AI API Calls",               "USD 50–500 / month",  "Caching reduces repeat analysis costs; per-call billing"],
+        ["Development Team",           "Voluntary (students)","All 5 members contributing on a voluntary basis for submission"],
+        ["MIL Content Review",         "Volunteer reviewers", "UNESCO partnership and educator volunteer program"],
+        ["Total Year 1 Estimate",      "USD 600–8,400",       "Coverable by UNESCO prize, seed grant, or university support"],
+    ],
+    col_widths=[2.4, 1.6, 2.6]
+)
+body(
+    "The freemium model ensures the platform operates at near-zero cost during user acquisition "
+    "while building the base needed to justify institutional licensing revenue from Year 2 onwards."
+)
+
+heading("14.3 Market Feasibility", level=2)
+simple_table(
+    ["Feasibility Dimension",  "Evidence"],
+    [
+        ["Market Demand",          "UNESCO 2026 MIL Challenge validates global institutional interest; 1.8B youth in target demographic"],
+        ["Problem Urgency",        "AI-generated misinformation growing exponentially; government mandates for digital literacy increasing globally"],
+        ["Competitive Gap",        "No existing platform combines simulation + consequence engine + teacher integration + AI assistance in one tool"],
+        ["Partnership Readiness",  "UNESCO, BBC Media Action, Reuters Foundation, and Google.org all have active MIL funding programs"],
+        ["Revenue Validation",     "School licensing model validated by EdTech tools: Newsela, CommonSense Media, Quill.org"],
+        ["Scale Path",             "Software scales without proportional cost increase; global deployment identical to local deployment technically"],
+    ],
+    col_widths=[2.4, 4.2]
+)
+
+heading("14.4 Risk Assessment & Mitigation", level=2)
+simple_table(
+    ["Risk",                               "Likelihood", "Impact", "Mitigation Strategy"],
+    [
+        ["AI API costs exceed budget",          "Medium", "Medium", "Aggressive caching; local fallback model; usage caps per user/day"],
+        ["Low initial user adoption",           "Medium", "High",   "School partnerships provide captive initial user base from launch"],
+        ["Content quality issues",              "Low",    "High",   "Human MIL expert mandatory review before any scenario is published"],
+        ["Data privacy breach",                 "Low",    "High",   "Supabase RLS + JWT auth + minimal PII collection by design"],
+        ["Platform moderation at scale",        "Medium", "Medium", "Tiered moderation: AI flagging first, human review pipeline second"],
+        ["Team bandwidth (student developers)", "High",   "Medium", "Phased roadmap; MVP scope carefully limited to core learning loop"],
+    ],
+    col_widths=[2.6, 0.9, 0.7, 2.4]
+)
+
+doc.add_page_break()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  SECTION 15 — FUTURE DEVELOPMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+heading("15. Future Development", level=1)
+add_hr()
+
+heading("15.1 Phase Roadmap", level=2)
 simple_table(
     ["Phase", "Name", "Key Features"],
     [
@@ -1102,7 +1374,7 @@ simple_table(
     col_widths=[1.2, 1.8, 3.6]
 )
 
-heading("12.2 Planned Features", level=2)
+heading("15.2 Planned Features", level=2)
 bullet("Adaptive Difficulty Engine: Dynamically adjusts scenario difficulty based on real-time skill progression analysis.")
 bullet("AI Tutor (FeedBot): A conversational AI tutor that guides students through investigations and explains MIL concepts in plain language.")
 bullet("Deepfake Detection Lab: A specialized module using visual and audio analysis tools to teach identification of synthetic media.")
@@ -1112,7 +1384,7 @@ bullet("LTI Integration: Learning Tools Interoperability (LTI) compliance for se
 bullet("Offline Mode: Full offline scenario cache for users in low-connectivity environments, syncing progress when connected.")
 bullet("Parental Dashboard: Guardian-accessible summary view of student MIL development for younger learners (under 16).")
 
-heading("12.3 Research & Impact Measurement", level=2)
+heading("15.3 Research & Impact Measurement", level=2)
 body(
     "FeedWise is designed to generate research-quality learning outcome data. Future development "
     "includes a formal Research Portal with anonymized dataset access for academic institutions "
@@ -1126,9 +1398,9 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 13 — CONCLUSION
+#  SECTION 16 — CONCLUSION
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("13. Conclusion", level=1)
+heading("16. Conclusion", level=1)
 add_hr()
 
 body(
@@ -1176,9 +1448,9 @@ doc.add_page_break()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-#  SECTION 14 — REFERENCES
+#  SECTION 17 — REFERENCES
 # ═══════════════════════════════════════════════════════════════════════════════
-heading("14. References", level=1)
+heading("17. References", level=1)
 add_hr()
 
 references = [
